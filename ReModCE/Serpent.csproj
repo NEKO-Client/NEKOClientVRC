@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4EA50331-5D4E-47D3-BDA5-260600CFF84C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Serpent</RootNamespace>
+    <AssemblyName>Serpent</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>D:\REMOD\REMODCE\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="DataModel">
+      <HintPath>D:\REMOD\REMODCE\DataModel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>D:\REMOD\REMODCE\Il2CppSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>D:\REMOD\REMODCE\Il2CppSystem.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MelonLoader, Version=0.4.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdparty\ml\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon-DotNet">
+      <HintPath>D:\REMOD\REMODCE\Photon-DotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\3rdparty\ml\Managed\System.Windows.Forms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnhollowerBaseLib, Version=0.4.15.4, Culture=neutral, PublicKeyToken=null">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnhollowerBaseLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.TextMeshPro">
+      <HintPath>D:\REMOD\REMODCE\UniTask.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>D:\REMOD\REMODCE\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>D:\REMOD\REMODCE\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <Private>false</Private>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.TextCoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.ClientBindings">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.ClientBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Common">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Security">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Serialization.AOT">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.Serialization.AOT.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Serialization.OdinSerializer">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.Serialization.OdinSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.VM">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.VM.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.VRCWrapperModules">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.VRCWrapperModules.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Wrapper">
+      <HintPath>D:\REMOD\REMODCE\VRC.Udon.Wrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.UI.Core">
+      <HintPath>D:\REMOD\REMODCE\VRC.UI.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VRC.UI.Elements">
+      <HintPath>D:\REMOD\REMODCE\VRC.UI.Elements.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VRC.UI.Shared">
+      <HintPath>D:\REMOD\REMODCE\VRC.UI.Shared.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VRC.Utility">
+      <HintPath>D:\REMOD\REMODCE\VRC.Utility.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VRCCore-Editor">
+      <HintPath>D:\REMOD\REMODCE\VRCCore-Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCCore-Standalone, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\VRCCore-Standalone.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDK2, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\VRCSDK2.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDK3, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\VRCSDK3.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDK3A">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\VRCSDK3A.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDKBase, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>false</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\REMOD\REMODCE\VRCSDKBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\AvatarFavoritesComponent.cs" />
+    <Compile Include="Components\AvatarSeenHistoryComponent.cs" />
+    <Compile Include="Components\CalibrationSavingComponent.cs" />
+    <Compile Include="Components\CopyUserInformationComponent.cs" />
+    <Compile Include="Components\ClockComponent.cs" />
+    <Compile Include="Components\DisableChairComponent.cs" />
+    <Compile Include="Components\EmojiBlocker.cs" />
+    <Compile Include="Components\FlyComponent.cs" />
+    <Compile Include="Components\DebugMenuComponent.cs" />
+    <Compile Include="Components\AresThemeComponent.cs" />
+    <Compile Include="Components\CustomLoadingMusicComponent.cs" />
+    <Compile Include="Components\ComfyMenuComponent.cs" />
+    <Compile Include="Components\MODStaff.cs" />
+    <Compile Include="Components\PlayersListComponent.cs" />
+    <Compile Include="Components\SpeedComponent.cs" />
+    <Compile Include="Components\RotatorComponent.cs" />
+    <Compile Include="Components\JoinNotifyComponent.cs" />
+    <Compile Include="Components\PortableMirrorComponent.cs" />
+    <Compile Include="Components\InfoLogsComponent.cs" />
+    <Compile Include="Components\InstanceDejavuComponent.cs" />
+    <Compile Include="Components\InstanceHistoryComponent.cs" />
+    <Compile Include="Components\InstanceLinkComponent.cs" />
+    <Compile Include="Components\AvatarThingsComponent.cs" />
+    <Compile Include="Components\MediaControlComponent.cs" />
+    <Compile Include="Components\PopupExComponent.cs" />
+    <Compile Include="Components\AvatarHistoryComponent.cs" />
+    <Compile Include="Components\PortalConfirmationComponent.cs" />
+    <Compile Include="Components\RestartButtonComponent.cs" />
+    <Compile Include="Components\TeleportComponent.cs" />
+    <Compile Include="Components\ThirdPersonComponent.cs" />
+    <Compile Include="Components\VRCStaffProtections.cs" />
+    <Compile Include="Components\VRCNewsAdjustment.cs" />
+    <Compile Include="ControlSchemes\DefaultControlScheme.cs" />
+    <Compile Include="ControlSchemes\Interface\IControlScheme.cs" />
+    <Compile Include="ControlSchemes\JanNyaaControlScheme.cs" />
+    <Compile Include="Core\ApiError.cs" />
+    <Compile Include="Core\BasicFunctions.cs" />
+    <Compile Include="Core\BinaryGZipSerializer.cs" />
+    <Compile Include="Components\CustomNameplateComponent.cs" />
+    <Compile Include="Core\DynamicContractResolver.cs" />
+    <Compile Include="Core\InputAxis.cs" />
+    <Compile Include="Core\NameplateModel.cs" />
+    <Compile Include="Misc.cs" />
+    <Compile Include="Mono\Platemanager.cs" />
+    <Compile Include="Mono\TagAnimation.cs" />
+    <Compile Include="Mono\TagRainbowcs.cs" />
+    <Compile Include="Mono\UpdateManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SDK\ModerationManagerExtension.cs" />
+    <Compile Include="Page\Categories\Utilties.cs" />
+    <Compile Include="Page\Categories\Visuals.cs" />
+    <Compile Include="Page\PageNames.cs" />
+    <Compile Include="Core\PlayerDetails.cs" />
+    <Compile Include="Core\ReAvatar.cs" />
+    <Compile Include="Core\RotationSystem.cs" />
+    <Compile Include="Core\RotatorPatches.cs" />
+    <Compile Include="Core\TaskExtensions.cs" />
+    <Compile Include="Core\Utilities.cs" />
+    <Compile Include="extension.cs" />
+    <Compile Include="Managers\QMLabel.cs" />
+    <Compile Include="Managers\Wrapper.cs" />
+    <Compile Include="Core\PhotonExtensions.cs" />
+    <Compile Include="ReModCE_ARES.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SDK\GeneralWrapper.cs" />
+    <Compile Include="SDK\Utils\FastMethodInfo.cs" />
+    <Compile Include="SDK\Utils\GeneralUtils.cs" />
+    <Compile Include="Core\Serialization.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReMod.Cores\SerpentCore.Core.csproj">
+      <Project>{C87FE758-ACB9-4FA2-AF6F-10AA9AA0023C}</Project>
+      <Name>SerpentCore.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReModCE.Loader\Serpent.Loader.csproj">
+      <Project>{6e5e0e59-73d9-4d74-b734-d040d26710c4}</Project>
+      <Name>Serpent.Loader</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\admin.png" />
+    <EmbeddedResource Include="Resources\arms-up.png" />
+    <EmbeddedResource Include="Resources\binoculars.png" />
+    <EmbeddedResource Include="Resources\blind.png" />
+    <EmbeddedResource Include="Resources\bone.png" />
+    <EmbeddedResource Include="Resources\box.png" />
+    <EmbeddedResource Include="Resources\cogwheel.png" />
+    <EmbeddedResource Include="Resources\copy.png" />
+    <EmbeddedResource Include="Resources\discord.png" />
+    <EmbeddedResource Include="Resources\dump.png" />
+    <EmbeddedResource Include="Resources\dust.png" />
+    <EmbeddedResource Include="Resources\exit-door.png" />
+    <EmbeddedResource Include="Resources\eye.png" />
+    <EmbeddedResource Include="Resources\flash.png" />
+    <EmbeddedResource Include="Resources\hanger.png" />
+    <EmbeddedResource Include="Resources\hidden.png" />
+    <EmbeddedResource Include="Resources\history.png" />
+    <EmbeddedResource Include="Resources\invite.png" />
+    <EmbeddedResource Include="Resources\keyboard.png" />
+    <EmbeddedResource Include="Resources\kick.png" />
+    <EmbeddedResource Include="Resources\knife.png" />
+    <EmbeddedResource Include="Resources\link.png" />
+    <EmbeddedResource Include="Resources\log.png" />
+    <EmbeddedResource Include="Resources\max.png" />
+    <EmbeddedResource Include="Resources\mixer.png" />
+    <EmbeddedResource Include="Resources\music.png" />
+    <EmbeddedResource Include="Resources\next.png" />
+    <EmbeddedResource Include="Resources\padlock.png" />
+    <EmbeddedResource Include="Resources\palette.png" />
+    <EmbeddedResource Include="Resources\pickup.png" />
+    <EmbeddedResource Include="Resources\play.png" />
+    <EmbeddedResource Include="Resources\portal.png" />
+    <EmbeddedResource Include="Resources\previous.png" />
+    <EmbeddedResource Include="Resources\radius.png" />
+    <EmbeddedResource Include="Resources\reload.png" />
+    <EmbeddedResource Include="Resources\remod.png" />
+    <EmbeddedResource Include="Resources\resolution.png" />
+    <EmbeddedResource Include="Resources\revolver.png" />
+    <EmbeddedResource Include="Resources\running.png" />
+    <EmbeddedResource Include="Resources\search.png" />
+    <EmbeddedResource Include="Resources\server.png" />
+    <EmbeddedResource Include="Resources\shield.png" />
+    <EmbeddedResource Include="Resources\skull.png" />
+    <EmbeddedResource Include="Resources\smoke.png" />
+    <EmbeddedResource Include="Resources\speed.png" />
+    <EmbeddedResource Include="Resources\star.png" />
+    <EmbeddedResource Include="Resources\start.png" />
+    <EmbeddedResource Include="Resources\stop.png" />
+    <EmbeddedResource Include="Resources\stopgame.png" />
+    <EmbeddedResource Include="Resources\teleport.png" />
+    <EmbeddedResource Include="Resources\tools.png" />
+    <EmbeddedResource Include="Resources\udon.png" />
+    <EmbeddedResource Include="Resources\weapons.png" />
+    <EmbeddedResource Include="Resources\win.png" />
+    <EmbeddedResource Include="Resources\wireframe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\areslogo.png" />
+    <EmbeddedResource Include="Resources\ares_panel.png" />
+    <Content Include="Resources\blind.png" />
+    <EmbeddedResource Include="Resources\broom.png" />
+    <EmbeddedResource Include="Resources\legs.png" />
+    <EmbeddedResource Include="Resources\meet.png" />
+    <EmbeddedResource Include="Resources\mirror.png" />
+    <EmbeddedResource Include="Resources\speedometer.png" />
+    <EmbeddedResource Include="Resources\Monkey.png" />
+    <Content Include="Resources\stopgame.png" />
+    <Content Include="Resources\start.png" />
+    <Content Include="Resources\exit-door.png" />
+    <Content Include="Resources\pickup.png" />
+    <Content Include="Resources\skull.png" />
+    <Content Include="Resources\win.png" />
+    <Content Include="Resources\smoke.png" />
+    <Content Include="Resources\revolver.png" />
+    <Content Include="Resources\knife.png" />
+    <Content Include="Resources\weapons.png" />
+    <EmbeddedResource Include="Resources\world.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y $(TargetFileName) S:\Games\steamapps\common\VRChat\$(TargetFileName)
+exit /b 0</PostBuildEvent>
+  </PropertyGroup>
+</Project>
