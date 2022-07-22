@@ -1,7 +1,7 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -14,7 +14,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VRC.UI.Elements;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal sealed class MediaControlComponent : ModComponent
     {

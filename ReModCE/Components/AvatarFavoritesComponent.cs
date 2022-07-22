@@ -1,12 +1,12 @@
 ﻿using MelonLoader;
 using Newtonsoft.Json;
-using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
-using Serpent.Core;
-using Serpent.Loader;
+using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Core;
+using NEKOClient.Loader;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,9 +26,9 @@ using VRC.DataModel;
 using VRC.SDKBase.Validation.Performance.Stats;
 using VRC.UI;
 using AvatarList = Il2CppSystem.Collections.Generic.List<VRC.Core.ApiAvatar>;
-using BuildInfo = Serpent.Loader.BuildInfo;
+using BuildInfo = NEKOClient.Loader.BuildInfo;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class AvatarFavoritesComponent : ModComponent, IAvatarListOwner
     {
@@ -52,7 +52,7 @@ namespace Serpent.Components
         private HttpClient _httpClient;
         private HttpClientHandler _httpClientHandler;
 
-        private const string PinPath = "UserData/Serpent/pin";
+        private const string PinPath = "UserData/NEKOClient/pin";
         private int _pinCode;
         private ReMenuButton _enterPinButton;
         private ReMenuButton _apiKeyButton;
@@ -148,7 +148,7 @@ namespace Serpent.Components
             {
                 if (!int.TryParse(File.ReadAllText(PinPath), out _pinCode))
                 {
-                    Serpent.LogDebug($"Couldn't read pin file from \"{PinPath}\". File might be corrupted.");
+                    NEKOClient.LogDebug($"Couldn't read pin file from \"{PinPath}\". File might be corrupted.");
                     ReLogger.Warning($"Couldn't read pin file from \"{PinPath}\". File might be corrupted.");
                 }
             }
@@ -180,7 +180,7 @@ namespace Serpent.Components
         {
             InitializeNetworkClient();
 
-            _favoriteAvatarList3 = new ReAvatarList("ARES Favorites 3", this, false);
+            _favoriteAvatarList3 = new ReAvatarList("NEKO Favorites 3", this, false);
             _favoriteAvatarList3.AvatarPedestal.field_Internal_Action_4_String_GameObject_AvatarPerformanceStats_ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique_0 = new Action<string, GameObject, AvatarPerformanceStats, ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique>(OnAvatarInstantiated3);
             _favoriteAvatarList3.OnEnable += () =>
             {
@@ -188,7 +188,7 @@ namespace Serpent.Components
                 _favoriteAvatarList3.GameObject.SetActive(AvatarFavoritesEnabled3);
             };
 
-            _favoriteAvatarList2 = new ReAvatarList("ARES Favorites 2", this, false);
+            _favoriteAvatarList2 = new ReAvatarList("NEKO Favorites 2", this, false);
             _favoriteAvatarList2.AvatarPedestal.field_Internal_Action_4_String_GameObject_AvatarPerformanceStats_ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique_0 = new Action<string, GameObject, AvatarPerformanceStats, ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique>(OnAvatarInstantiated2);
             _favoriteAvatarList2.OnEnable += () =>
             {
@@ -196,7 +196,7 @@ namespace Serpent.Components
                 _favoriteAvatarList2.GameObject.SetActive(AvatarFavoritesEnabled2);
             };
 
-            _favoriteAvatarList1 = new ReAvatarList("ARES Favorites 1", this, false);
+            _favoriteAvatarList1 = new ReAvatarList("NEKO Favorites 1", this, false);
             _favoriteAvatarList1.AvatarPedestal.field_Internal_Action_4_String_GameObject_AvatarPerformanceStats_ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique_0 = new Action<string, GameObject, AvatarPerformanceStats, ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique>(OnAvatarInstantiated1);
             _favoriteAvatarList1.OnEnable += () =>
             {
@@ -204,7 +204,7 @@ namespace Serpent.Components
                 _favoriteAvatarList1.GameObject.SetActive(AvatarFavoritesEnabled1);
             };
 
-            _favoriteAvatarList = new ReAvatarList("ARES Favorites", this, false);
+            _favoriteAvatarList = new ReAvatarList("NEKO Favorites", this, false);
             _favoriteAvatarList.AvatarPedestal.field_Internal_Action_4_String_GameObject_AvatarPerformanceStats_ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique_0 = new Action<string, GameObject, AvatarPerformanceStats, ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique>(OnAvatarInstantiated);
             _favoriteAvatarList.OnEnable += () =>
             {
@@ -212,7 +212,7 @@ namespace Serpent.Components
                 _favoriteAvatarList.GameObject.SetActive(AvatarFavoritesEnabled);
             };
 
-            _searchedAvatarList = new ReAvatarList("ARES Search", this);
+            _searchedAvatarList = new ReAvatarList("NEKO Search", this);
 
             var parent = GameObject.Find("UserInterface/MenuContent/Screens/Avatar/Favorite Button").transform.parent;
             _favoriteButton = new ReUiButton("Favorite", new Vector2(-600f, 375f), new Vector2(0.5f, 1f),
@@ -308,7 +308,7 @@ namespace Serpent.Components
         {
             base.OnUiManagerInit(uiManager);
 
-            if (Serpent.IsRubyLoaded)
+            if (NEKOClient.IsRubyLoaded)
             {
                 _favoriteButton.Position += new Vector3(420f, 0f);
             }
@@ -414,12 +414,12 @@ namespace Serpent.Components
 
             if (!_searchBox.field_Public_Button_0.interactable)
             {
-                if (!Serpent.IsEmmVrcLoaded || _updatesWithoutSearch >= 10)
+                if (!NEKOClient.IsEmmVrcLoaded || _updatesWithoutSearch >= 10)
                 {
                     _searchBox.field_Public_Button_0.interactable = true;
                     _searchBox.field_Public_UnityAction_1_String_0 = _searchAvatarsAction;
                 }
-                else if (Serpent.IsEmmVrcLoaded)
+                else if (NEKOClient.IsEmmVrcLoaded)
                 {
                     ++_updatesWithoutSearch;
                 }
@@ -427,7 +427,7 @@ namespace Serpent.Components
             }
             else
             {
-                if (Serpent.IsEmmVrcLoaded && _updatesWithoutSearch < 10)
+                if (NEKOClient.IsEmmVrcLoaded && _updatesWithoutSearch < 10)
                 {
                     if (_searchBox.field_Public_UnityAction_1_String_0 == null)
                         return;
@@ -470,7 +470,7 @@ namespace Serpent.Components
             var popupManager = VRCUiPopupManager.field_Private_Static_VRCUiPopupManager_0;
             if (string.IsNullOrEmpty(searchTerm) || searchTerm.Length < 3)
             {
-                popupManager.ShowStandardPopupV2("ARES Search", "That search term is too short. The search term has to be at least 3 characters.", "I'm sorry!",
+                popupManager.ShowStandardPopupV2("NEKO Search", "That search term is too short. The search term has to be at least 3 characters.", "I'm sorry!",
                     () =>
                     {
                         popupManager.HideCurrentPopup();
@@ -502,7 +502,7 @@ namespace Serpent.Components
                         var errorMessage = JsonConvert.DeserializeObject<ApiError>(errorData.Result).Error;
 
                         ReLogger.Error($"Could not search for avatars: \"{errorMessage}\"");
-                        Serpent.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
+                        NEKOClient.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
                         if (searchResponse.StatusCode == HttpStatusCode.Forbidden)
                         {
                             MelonCoroutines.Start(ShowAlertDelayed($"Could not search for avatars\nReason: \"{errorMessage}\""));
@@ -532,7 +532,7 @@ namespace Serpent.Components
             var popupManager = VRCUiPopupManager.field_Private_Static_VRCUiPopupManager_0;
             if (string.IsNullOrEmpty(searchTerm) || searchTerm.Length < 3)
             {
-                popupManager.ShowStandardPopupV2("ARES Search", "That search term is too short. The search term has to be at least 3 characters.", "I'm sorry!",
+                popupManager.ShowStandardPopupV2("NEKO Search", "That search term is too short. The search term has to be at least 3 characters.", "I'm sorry!",
                     () =>
                     {
                         popupManager.HideCurrentPopup();
@@ -564,7 +564,7 @@ namespace Serpent.Components
                         var errorMessage = JsonConvert.DeserializeObject<ApiError>(errorData.Result).Error;
 
                         ReLogger.Error($"Could not search for avatars: \"{errorMessage}\"");
-                        Serpent.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
+                        NEKOClient.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
                         if (searchResponse.StatusCode == HttpStatusCode.Forbidden)
                         {
                             MelonCoroutines.Start(ShowAlertDelayed($"Could not search for avatars\nReason: \"{errorMessage}\""));
@@ -599,7 +599,7 @@ namespace Serpent.Components
                 _searchedAvatars.Add(avi);
             }
 
-            Serpent.LogDebug($"Found {_searchedAvatars.Count} avatars");
+            NEKOClient.LogDebug($"Found {_searchedAvatars.Count} avatars");
             ReLogger.Msg($"Found {_searchedAvatars.Count} avatars");
             _searchedAvatarList.RefreshAvatars();
         }
@@ -625,10 +625,10 @@ namespace Serpent.Components
                 switch (updatedAvatar.releaseStatus)
                 {
                     case "private" when updatedAvatar.authorId != APIUser.CurrentUser.id:
-                        VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("ARES", "This avatar is private and you don't own it. You can't switch into it.");
+                        VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("NEKO", "This avatar is private and you don't own it. You can't switch into it.");
                         break;
                     case "unavailable":
-                        VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("ARES", "This avatar has been deleted. You can't switch into it.");
+                        VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("NEKO", "This avatar has been deleted. You can't switch into it.");
                         break;
                     default:
                         _changeButtonEvent.Invoke();
@@ -636,7 +636,7 @@ namespace Serpent.Components
                 }
             }), new Action<ApiContainer>(ac =>
             {
-                VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("ARES", "This avatar has been deleted. You can't switch into it.");
+                VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("NEKO", "This avatar has been deleted. You can't switch into it.");
             }));
         }
 
@@ -659,7 +659,7 @@ namespace Serpent.Components
                     searchResponse.Content.ReadAsStringAsync().ContinueWith(errorData =>
                     {
                         var errorMessage = JsonConvert.DeserializeObject<ApiError>(errorData.Result).Error;
-                        Serpent.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
+                        NEKOClient.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
                         ReLogger.Error($"Could not search for avatars: \"{errorMessage}\"");
                         if (searchResponse.StatusCode == HttpStatusCode.Forbidden)
                         {
@@ -697,7 +697,7 @@ namespace Serpent.Components
                     searchResponse.Content.ReadAsStringAsync().ContinueWith(errorData =>
                     {
                         var errorMessage = JsonConvert.DeserializeObject<ApiError>(errorData.Result).Error;
-                        Serpent.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
+                        NEKOClient.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
                         ReLogger.Error($"Could not search for avatars: \"{errorMessage}\"");
                         if (searchResponse.StatusCode == HttpStatusCode.Forbidden)
                         {
@@ -735,7 +735,7 @@ namespace Serpent.Components
                     searchResponse.Content.ReadAsStringAsync().ContinueWith(errorData =>
                     {
                         var errorMessage = JsonConvert.DeserializeObject<ApiError>(errorData.Result).Error;
-                        Serpent.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
+                        NEKOClient.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
                         ReLogger.Error($"Could not search for avatars: \"{errorMessage}\"");
                         if (searchResponse.StatusCode == HttpStatusCode.Forbidden)
                         {
@@ -773,7 +773,7 @@ namespace Serpent.Components
                     searchResponse.Content.ReadAsStringAsync().ContinueWith(errorData =>
                     {
                         var errorMessage = JsonConvert.DeserializeObject<ApiError>(errorData.Result).Error;
-                        Serpent.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
+                        NEKOClient.LogDebug($"Could not search for avatars: \"{errorMessage}\"");
                         ReLogger.Error($"Could not search for avatars: \"{errorMessage}\"");
                         if (searchResponse.StatusCode == HttpStatusCode.Forbidden)
                         {
@@ -798,7 +798,7 @@ namespace Serpent.Components
 
             yield return new WaitForSeconds(seconds);
 
-            VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("ARES ARES", message);
+            VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("NEKO NEKO", message);
         }
 
         private void OnAvatarInstantiated(string url, GameObject avatar, AvatarPerformanceStats avatarPerformanceStats, ObjectPublicBoBoBoBoBoBoBoBoBoBoUnique unknown)
@@ -876,7 +876,7 @@ namespace Serpent.Components
                 }
                 catch (Exception ex)
                 {
-                    Serpent.LogDebug(ex.Message);
+                    NEKOClient.LogDebug(ex.Message);
                     ReLogger.Error(ex.Message);
                 }
             }

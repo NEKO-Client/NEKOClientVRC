@@ -1,8 +1,8 @@
-﻿using SerpentCore.Core.Helpers;
+﻿using NEKOClientCore.Core.Helpers;
 using UnityEngine;
 using UnityEngine.XR;
 
-namespace SerpentCore.Core.Managers
+namespace NEKOClientCore.Core.Managers
 {
     internal static class InputManager
     {

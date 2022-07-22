@@ -1,7 +1,7 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using Serpent.Loader;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClient.Loader;
 using System.Linq;
 using System.Reflection;
 using UnhollowerRuntimeLib;
@@ -9,7 +9,7 @@ using UnhollowerRuntimeLib.XrefScans;
 using UnityEngine;
 using UnityEngine.XR;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class ComfyMenuComponent : ModComponent
     {
@@ -40,7 +40,7 @@ namespace Serpent.Components
                     return;
                 }
 
-                Serpent.Harmony.Patch(PlaceUiMethod, GetLocalPatch(nameof(PlaceUiPatch)));
+                NEKOClient.Harmony.Patch(PlaceUiMethod, GetLocalPatch(nameof(PlaceUiPatch)));
             }
         }
         public static bool IsInVR()

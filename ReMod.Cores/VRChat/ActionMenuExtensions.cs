@@ -1,4 +1,4 @@
-﻿namespace SerpentCore.Core.VRChat
+﻿namespace NEKOClientCore.Core.VRChat
 {
     public static class ActionMenuExtensions
     {

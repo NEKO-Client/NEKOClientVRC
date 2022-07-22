@@ -3,13 +3,13 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.Unity;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.Unity;
 using UnhollowerRuntimeLib.XrefScans;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SerpentCore.Core.VRChat
+namespace NEKOClientCore.Core.VRChat
 {
     public static class PopupManagerExtensions
     {

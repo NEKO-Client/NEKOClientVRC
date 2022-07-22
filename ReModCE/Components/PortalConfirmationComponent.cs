@@ -1,12 +1,12 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
 using System.Linq;
 using System.Reflection;
 using UnhollowerRuntimeLib.XrefScans;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal sealed class PortalConfirmationComponent : ModComponent
     {
@@ -33,7 +33,7 @@ namespace Serpent.Components
                 return false;
             }))
             {
-                Serpent.Harmony.Patch(t, GetLocalPatch(nameof(EnterConfirm)));
+                NEKOClient.Harmony.Patch(t, GetLocalPatch(nameof(EnterConfirm)));
             }
 
             PortalConfirmationEnabled = new ConfigValue<bool>(nameof(PortalConfirmationEnabled), true);

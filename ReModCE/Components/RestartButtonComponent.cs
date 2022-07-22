@@ -1,9 +1,9 @@
 ﻿using MelonLoader;
-using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.Unity;
-using SerpentCore.Core.VRChat;
+using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.Unity;
+using NEKOClientCore.Core.VRChat;
 using System;
 using System.Collections;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Linq;
 using UnityEngine;
 using VRC.Core;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     [ComponentPriority(int.MaxValue)]
     internal sealed class RestartButtonComponent : ModComponent
@@ -94,7 +94,7 @@ namespace Serpent.Components
             utilityPage.AddButton("Restart", "Restart the game.", () => Restart(false), ResourceManager.GetSprite("remodce.reload"));
             utilityPage.AddButton(template, template + ".", () => Restart(true), ResourceManager.GetSprite("remodce.reload"));
 
-            Serpent.WingMenu.AddButton("Restart", "Restart the game.", RestartConfirm, ResourceManager.GetSprite("remodce.reload"), false);
+            NEKOClient.WingMenu.AddButton("Restart", "Restart the game.", RestartConfirm, ResourceManager.GetSprite("remodce.reload"), false);
 
             _shouldRejoinToggle = utilityPage.AddToggle("Rejoin World", "On restart, rejoin the current world.", ShouldRejoin);
             _shouldTeleportToggle = utilityPage.AddToggle("Teleport Back", "On restart, teleport back to the original location.", ShouldTeleport);

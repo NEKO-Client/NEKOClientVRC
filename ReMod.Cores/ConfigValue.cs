@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using MelonLoader;
-using SerpentCore.Core.Managers;
+using NEKOClientCore.Core.Managers;
 
-namespace SerpentCore.Core
+namespace NEKOClientCore.Core
 {
     public class ConfigValue<T>
     {

@@ -1,4 +1,4 @@
-﻿namespace SerpentCore.Core.Types
+﻿namespace NEKOClientCore.Core.Types
 {
     public enum PedalType
     {

@@ -8,7 +8,7 @@ using VRC.DataModel;
 using VRC.SDKBase;
 using VRC.UI;
 
-namespace SerpentCore.Core.VRChat
+namespace NEKOClientCore.Core.VRChat
 {
     public static class PlayerExtensions
     {

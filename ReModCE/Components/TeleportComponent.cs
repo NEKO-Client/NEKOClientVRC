@@ -1,16 +1,16 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
-using Serpent.Managers;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Managers;
 using UnityEngine;
 using VRC;
 using VRC.Core;
 using VRC.DataModel;
 using VRC.UI;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal sealed class TeleportComponent : ModComponent
     {

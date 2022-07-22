@@ -2,7 +2,7 @@
 using VRC.Core;
 using VRC.SDKBase;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     public class PlayerDetails
     {

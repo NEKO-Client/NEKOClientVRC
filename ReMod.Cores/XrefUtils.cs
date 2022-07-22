@@ -4,7 +4,7 @@ using HarmonyLib;
 using MelonLoader;
 using UnhollowerRuntimeLib.XrefScans;
 
-namespace SerpentCore.Core
+namespace NEKOClientCore.Core
 {
     public static class XrefUtils
     {

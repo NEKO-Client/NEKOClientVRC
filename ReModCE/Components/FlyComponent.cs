@@ -1,10 +1,10 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Api;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.UI.Wings;
-using SerpentCore.Core.VRChat;
-using Serpent.Managers;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Api;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.UI.Wings;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using UnhollowerRuntimeLib;
@@ -20,7 +20,7 @@ using VRC_Pickup = VRC.SDKBase.VRC_Pickup;
 using VRC_UiShape = VRC.SDKBase.VRC_UiShape;
 
 // ReSharper disable InconsistentNaming
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     public class FlyComponent : ModComponent
     {
@@ -91,7 +91,7 @@ namespace Serpent.Components
             catch { }
             _flyToggle = movementMenu.AddToggle("Fly", "Enable/Disable Fly", ToggleFly, _flyEnabled);
             _noclipToggle = movementMenu.AddToggle("Noclip", "Enable/Disable Noclip", ToggleNoclip, _noclipEnabled);
-            _noclipWingToggle = Serpent.WingMenu.AddToggle("Noclip", "Enable/Disable Noclip", b =>
+            _noclipWingToggle = NEKOClient.WingMenu.AddToggle("Noclip", "Enable/Disable Noclip", b =>
             {
                 if (b)
                 {
@@ -140,7 +140,7 @@ namespace Serpent.Components
 
         private void ToggleFlyQuick(bool value)
         {
-            if (Serpent.RotatorEnabled)
+            if (NEKOClient.RotatorEnabled)
             {
                 ToggleFly(false);
                 return;
@@ -188,7 +188,7 @@ namespace Serpent.Components
 
         private void ToggleFly(bool value)
         {
-            if (Serpent.RotatorEnabled)
+            if (NEKOClient.RotatorEnabled)
             {
                 _flyEnabled = false;
                 _flyToggle?.Toggle(false);
@@ -220,7 +220,7 @@ namespace Serpent.Components
 
         private void ToggleNoclip(bool value)
         {
-            if (Serpent.RotatorEnabled)
+            if (NEKOClient.RotatorEnabled)
             {
                 _noclipEnabled = false;
                 _noclipToggle?.Toggle(false);
@@ -255,7 +255,7 @@ namespace Serpent.Components
 
         public override void OnUpdate()
         {
-            if (Serpent.RotatorEnabled)
+            if (NEKOClient.RotatorEnabled)
             {
                 ToggleFly(false);
             }

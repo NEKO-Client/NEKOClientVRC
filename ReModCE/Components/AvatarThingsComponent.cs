@@ -1,7 +1,7 @@
 ﻿
 using MelonLoader;
-using SerpentCore.Core;
-using SerpentCore.Core.Managers;
+using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -9,7 +9,7 @@ using UnityEngine;
 using VRC.Core;
 using VRC.UI;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal sealed class AvatarThingsComponent : ModComponent
     {

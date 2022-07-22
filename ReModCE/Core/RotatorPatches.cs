@@ -1,5 +1,5 @@
 ﻿using MelonLoader;
-using Serpent.Loader;
+using NEKOClient.Loader;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using UnhollowerRuntimeLib.XrefScans;
 using UnityEngine;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     internal class RotatorPatches
     {

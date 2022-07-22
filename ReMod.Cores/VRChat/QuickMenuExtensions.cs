@@ -5,7 +5,7 @@ using UnhollowerRuntimeLib.XrefScans;
 using VRC.UI;
 using VRC.UI.Elements;
 
-namespace SerpentCore.Core.VRChat
+namespace NEKOClientCore.Core.VRChat
 {
     public static class QuickMenuExtensions
     {

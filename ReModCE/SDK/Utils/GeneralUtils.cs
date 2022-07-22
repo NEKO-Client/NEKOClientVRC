@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRC.Core;
 
-namespace Serpent.SDK
+namespace NEKOClient.SDK
 {
     internal class GeneralUtils
     {

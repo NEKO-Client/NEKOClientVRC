@@ -1,5 +1,5 @@
 ﻿using System;
-using SerpentCore.Core.VRChat;
+using NEKOClientCore.Core.VRChat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ using VRC.UI.Elements;
 using VRC.UI.Shared;
 using Object = UnityEngine.Object;
 
-namespace SerpentCore.Core.UI.Wings
+namespace NEKOClientCore.Core.UI.Wings
 {
     [Flags]
     public enum WingSide

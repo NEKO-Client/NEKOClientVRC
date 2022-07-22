@@ -1,9 +1,10 @@
-﻿namespace Serpent.Page
+﻿namespace NEKOClient.Page
 {
     public static class PageNames
     {
         //Page names within Serpent.cs
-        public static string ARES = "Chis Mod Menu";
+        public static string ARES = "NEKOClient Menu";
+        public static string NEKOClientMenu = "NEKO MENU";
         public static string Movement = "Movement";
         public static string Visuals = "Visuals";
         public static string Avatars = "Avatars";

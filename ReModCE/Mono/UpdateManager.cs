@@ -1,8 +1,8 @@
-﻿using Serpent.Loader;
+﻿using NEKOClient.Loader;
 using System;
 using UnityEngine;
 
-namespace Serpent.Mono
+namespace NEKOClient.Mono
 {
     internal class UpdateManager : MonoBehaviour
     {
@@ -22,12 +22,12 @@ namespace Serpent.Mono
 
             try
             {
-                if (Serpent._Queue.Count != 0)
+                if (NEKOClient._Queue.Count != 0)
                 {
-                    for (int i = 0; i < Serpent._Queue.Count; i++)
+                    for (int i = 0; i < NEKOClient._Queue.Count; i++)
                     {
-                        Serpent._Queue.ToArray()[i].Invoke();
-                        Serpent._Queue.Dequeue();
+                        NEKOClient._Queue.ToArray()[i].Invoke();
+                        NEKOClient._Queue.Dequeue();
                     }
                 }
             }

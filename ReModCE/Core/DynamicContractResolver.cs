@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     public class DynamicContractResolver : DefaultContractResolver
     {

@@ -1,15 +1,15 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
-using Serpent.Loader;
-using Serpent.Managers;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Loader;
+using NEKOClient.Managers;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 using VRCSDK2;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class PortableMirrorComponent : ModComponent
     {

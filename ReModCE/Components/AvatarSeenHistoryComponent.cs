@@ -1,13 +1,13 @@
 ﻿using ExitGames.Client.Photon;
 using MelonLoader.ICSharpCode.SharpZipLib.GZip;
-using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
-using Serpent.Core;
-using Serpent.Loader;
-using Serpent.Managers;
+using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Core;
+using NEKOClient.Loader;
+using NEKOClient.Managers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +18,7 @@ using VRC;
 using VRC.Core;
 using AvatarList = Il2CppSystem.Collections.Generic.List<VRC.Core.ApiAvatar>;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class AvatarSeenHistoryComponent : ModComponent, IAvatarListOwner
     {
@@ -39,19 +39,19 @@ namespace Serpent.Components
                 _avatarSeenList.GameObject.SetActive(AvatarSeenHistoryEnabled);
             };
 
-            if (File.Exists("UserData/Serpent/recent_avatars_seen.bin"))
+            if (File.Exists("UserData/NEKOClient/recent_avatars_seen.bin"))
             {
                 try
                 {
                     _recentSeenAvatars =
-                        BinaryGZipSerializer.Deserialize("UserData/Serpent/recent_avatars_seen.bin") as List<ReAvatar>;
+                        BinaryGZipSerializer.Deserialize("UserData/NEKOClient/recent_avatars_seen.bin") as List<ReAvatar>;
                 }
                 catch (GZipException)
                 {
-                    Serpent.LogDebug($"Your recent seen avatars file seems to be corrupted. I renamed it for you, so this error doesn't happen again.");
+                    NEKOClient.LogDebug($"Your recent seen avatars file seems to be corrupted. I renamed it for you, so this error doesn't happen again.");
                     ReLogger.Error($"Your recent seen avatars file seems to be corrupted. I renamed it for you, so this error doesn't happen again.");
-                    File.Delete("UserData/Serpent/recent_avatars_seen.bin.corrupted");
-                    File.Move("UserData/Serpent/recent_avatars_seen.bin", "UserData/Serpent/recent_avatars_seen.bin.corrupted");
+                    File.Delete("UserData/NEKOClient/recent_avatars_seen.bin.corrupted");
+                    File.Move("UserData/NEKOClient/recent_avatars_seen.bin", "UserData/NEKOClient/recent_avatars_seen.bin.corrupted");
                     _recentSeenAvatars = new List<ReAvatar>();
                 }
             }
@@ -144,7 +144,7 @@ namespace Serpent.Components
 
         private void SaveSeenAvatarsToDisk()
         {
-            BinaryGZipSerializer.Serialize(_recentSeenAvatars, "UserData/Serpent/recent_avatars_seen.bin");
+            BinaryGZipSerializer.Serialize(_recentSeenAvatars, "UserData/NEKOClient/recent_avatars_seen.bin");
         }
 
         public AvatarList GetAvatars(ReAvatarList avatarList)

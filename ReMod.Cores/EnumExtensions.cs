@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SerpentCore.Core
+namespace NEKOClientCore.Core
 {
     public static class EnumExtensions
     {

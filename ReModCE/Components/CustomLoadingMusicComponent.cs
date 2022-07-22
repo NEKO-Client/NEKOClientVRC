@@ -1,14 +1,14 @@
 ﻿using MelonLoader;
-using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
 using System;
 using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class CustomLoadingMusicComponent : ModComponent
     {
@@ -43,7 +43,7 @@ namespace Serpent.Components
             if (CustomMusicEnabled)
             {
                 MelonLogger.Msg("Loading custom loading screen music");
-                var uwr = UnityWebRequest.Get($"file://{Path.Combine(Environment.CurrentDirectory, "LoadingScreenMusic/Music.ogg")}");
+                var uwr = UnityWebRequest.Get($"file://{Path.Combine(Environment.CurrentDirectory, "UserData/NEKOClient/LoadingScreenMusic/Music.ogg")}");
                 uwr.SendWebRequest();
 
                 while (!uwr.isDone) yield return null;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Serpent.Mono
+namespace NEKOClient.Mono
 {
     internal class TagRainbow : MonoBehaviour
     {

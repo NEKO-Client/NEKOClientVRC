@@ -1,12 +1,12 @@
 using System.IO;
 using System.Reflection;
 using MelonLoader;
-using SerpentCore.Core.Helpers;
+using NEKOClientCore.Core.Helpers;
 using UnhollowerRuntimeLib;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SerpentCore.Core.Managers
+namespace NEKOClientCore.Core.Managers
 {
     public static class ResourcesManager
     {

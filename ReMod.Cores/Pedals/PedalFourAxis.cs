@@ -1,10 +1,10 @@
 ﻿using System;
-using SerpentCore.Core.Helpers;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.Types;
+using NEKOClientCore.Core.Helpers;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.Types;
 using UnityEngine;
 
-namespace SerpentCore.Core.Pedals
+namespace NEKOClientCore.Core.Pedals
 {
     public sealed class PedalFourAxis : PedalStruct
     {

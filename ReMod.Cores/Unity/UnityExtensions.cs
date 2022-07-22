@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SerpentCore.Core.Unity
+namespace NEKOClientCore.Core.Unity
 {
     public static class UnityExtensions
     {

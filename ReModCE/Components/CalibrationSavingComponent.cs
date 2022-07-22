@@ -1,10 +1,10 @@
 ﻿using MelonLoader;
 using Newtonsoft.Json;
-using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using Serpent.Core;
-using Serpent.Loader;
+using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClient.Core;
+using NEKOClient.Loader;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     [ComponentDisabled]
     internal class CalibrationSavingComponent : ModComponent
@@ -31,7 +31,7 @@ namespace Serpent.Components
 
         public CalibrationSavingComponent()
         {
-            if (Serpent.IsOculus)
+            if (NEKOClient.IsOculus)
                 return;
 
             CalibrationSaverEnabled = new ConfigValue<bool>(nameof(CalibrationSaverEnabled), true);
@@ -39,32 +39,32 @@ namespace Serpent.Components
             if (MelonHandler.Mods.Any(i => i.Info.Name == "FBT Saver"))
             {
                 ReLogger.Msg(ConsoleColor.Yellow, "Found FBT Saver Mod. Not loading Calibration Saver.");
-                //Serpent.LogDebug("Found FBT Saver Mod. Not loading Calibration Saver.");
+                //NEKOClient.LogDebug("Found FBT Saver Mod. Not loading Calibration Saver.");
                 return;
             }
 
             if (MelonHandler.Mods.Any(i => i.Info.Name == "IKTweaks")) // Added by Jdbye
             {
-                //Serpent.LogDebug("Found IKTweaks Mod. Not loading Calibration Saver.");
+                //NEKOClient.LogDebug("Found IKTweaks Mod. Not loading Calibration Saver.");
                 ReLogger.Msg(ConsoleColor.Yellow, "Found IKTweaks Mod. Not loading Calibration Saver.");
                 return;
             }
 
-            if (File.Exists("UserData/Serpent/calibrations.json"))
+            if (File.Exists("UserData/NEKOClient/calibrations.json"))
             {
                 _savedCalibrations =
                     JsonConvert.DeserializeObject<Dictionary<string, FbtCalibration>>(
-                        File.ReadAllText("UserData/Serpent/calibrations.json"));
+                        File.ReadAllText("UserData/NEKOClient/calibrations.json"));
 
-                //Serpent.LogDebug($"Loaded {_savedCalibrations.Count} calibrations from disk.");
+                //NEKOClient.LogDebug($"Loaded {_savedCalibrations.Count} calibrations from disk.");
                 ReLogger.Msg($"Loaded {_savedCalibrations.Count} calibrations from disk.");
             }
             else
             {
-                //Serpent.LogDebug($"No saved calibrations found. Creating new.");
+                //NEKOClient.LogDebug($"No saved calibrations found. Creating new.");
                 ReLogger.Msg($"No saved calibrations found. Creating new.");
                 _savedCalibrations = new Dictionary<string, FbtCalibration>();
-                File.WriteAllText("UserData/Serpent/calibrations.json", JsonConvert.SerializeObject(_savedCalibrations, Formatting.Indented, new JsonSerializerSettings
+                File.WriteAllText("UserData/NEKOClient/calibrations.json", JsonConvert.SerializeObject(_savedCalibrations, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 }));
@@ -84,17 +84,17 @@ namespace Serpent.Components
                     switch (methodInfo.GetParameters().Length)
                     {
                         case 1 when methodInfo.GetParameters().First().ParameterType == typeof(string) && methodInfo.ReturnType == typeof(bool) && methodInfo.GetRuntimeBaseDefinition() == methodInfo:
-                            Serpent.Harmony.Patch(methodInfo, GetLocalPatch(nameof(IsCalibratedForAvatar)));
+                            NEKOClient.Harmony.Patch(methodInfo, GetLocalPatch(nameof(IsCalibratedForAvatar)));
                             break;
                         case 3 when methodInfo.GetParameters().First().ParameterType == typeof(Animator) && methodInfo.ReturnType == typeof(void) && methodInfo.GetRuntimeBaseDefinition() == methodInfo:
-                            Serpent.Harmony.Patch(methodInfo, postfix: GetLocalPatch(nameof(PerformCalibration)));
+                            NEKOClient.Harmony.Patch(methodInfo, postfix: GetLocalPatch(nameof(PerformCalibration)));
                             break;
                     }
                 }
             }
             catch (Exception)
             {
-                //Serpent.LogDebug($"Could not patch VRCTrackingSteam methods. CalibrationSaver won't work.");
+                //NEKOClient.LogDebug($"Could not patch VRCTrackingSteam methods. CalibrationSaver won't work.");
                 ReLogger.Warning($"Could not patch VRCTrackingSteam methods. CalibrationSaver won't work.");
             }
         }
@@ -107,7 +107,7 @@ namespace Serpent.Components
             menu.AddButton("Clear Saved Calibrations", "Clear your saved calibrations from your disk.", () =>
             {
                 _savedCalibrations.Clear();
-                File.Delete("UserData/Serpent/calibrations.json");
+                File.Delete("UserData/NEKOClient/calibrations.json");
             }, ResourceManager.GetSprite("remodce.dust"));
         }
 
@@ -131,7 +131,7 @@ namespace Serpent.Components
 
             try
             {
-                File.WriteAllText("UserData/Serpent/calibrations.json", JsonConvert.SerializeObject(_savedCalibrations, Formatting.Indented, new JsonSerializerSettings
+                File.WriteAllText("UserData/NEKOClient/calibrations.json", JsonConvert.SerializeObject(_savedCalibrations, Formatting.Indented, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                     ContractResolver = new DynamicContractResolver(new List<string> { "normalized" })
@@ -139,7 +139,7 @@ namespace Serpent.Components
             }
             catch (Exception e)
             {
-                Serpent.LogDebug($"Could not save current calibration to file!\n {e}");
+                NEKOClient.LogDebug($"Could not save current calibration to file!\n {e}");
                 ReLogger.Error($"Could not save current calibration to file!\n {e}");
             }
         }

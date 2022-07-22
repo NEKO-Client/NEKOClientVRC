@@ -1,8 +1,8 @@
-﻿using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
+﻿using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
 using UnityEngine;
 
-namespace SerpentCore.Core.Managers
+namespace NEKOClientCore.Core.Managers
 {
     public class UiManager
     {

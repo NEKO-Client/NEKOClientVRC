@@ -3,18 +3,20 @@ using HarmonyLib;
 using MelonLoader;
 using Newtonsoft.Json;
 using Photon.Realtime;
-using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.Pedals;
-using SerpentCore.Core.UI.Wings;
-using SerpentCore.Core.Unity;
-using SerpentCore.Core.VRChat;
-using Serpent.Components;
-using Serpent.Core;
-using Serpent.Loader;
-using Serpent.Managers;
-using Serpent.Page;
-using Serpent.SDK;
+using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.Pedals;
+using NEKOClientCore.Core.UI.Wings;
+using NEKOClientCore.Core.Unity;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.ApplicationBot;
+using NEKOClient.Components;
+using NEKOClient.Config;
+using NEKOClient.Core;
+using NEKOClient.Loader;
+using NEKOClient.Managers;
+using NEKOClient.Page;
+using NEKOClient.SDK;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,12 +37,13 @@ using VRC;
 using VRC.Core;
 using VRC.SDKBase;
 using VRC.Udon;
-using ConfigManager = SerpentCore.Core.Managers.ConfigManager;
+using ConfigManager = NEKOClientCore.Core.Managers.ConfigManager;
 
-namespace Serpent
+namespace NEKOClient
 {
-    public static class Serpent
+    public static class NEKOClient
     {
+        public static List<VRCModule> Modules = new List<VRCModule>();
         private static readonly List<ModComponent> Components = new List<ModComponent>();
         private static UiManager _uiManager;
         private static ConfigManager _configManager;
@@ -71,21 +74,125 @@ namespace Serpent
 
         public static string NumberBot = "0";
 
+        private static MelonPreferences_Entry<bool> _paranoidMode;
+
+        private static void DownloadFiles(string path, string fileName, string fileext)
+        {
+            
+
+                using var sha256 = SHA256.Create();
+
+                byte[] bytes = null;
+                if (File.Exists($"{Path.Combine(Environment.CurrentDirectory, path + "/" + fileName + "." + fileext)}"))
+                {
+                    bytes = File.ReadAllBytes($"{Path.Combine(Environment.CurrentDirectory, path + "/" + fileName + "." + fileext)}");
+                }
+
+                using var wc = new WebClient
+                {
+                    Headers =
+                {
+                    ["User-Agent"] =
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0"
+                }
+                };
+
+                byte[] latestBytes = null;
+                try
+                {
+                    latestBytes = wc.DownloadData($"https://apiv2.chisdealhd.co.uk/v2/games/api/vrchatclient/nekoclient/safety/assets/{fileName}");
+                }
+                catch (WebException e)
+                {
+                    MelonLogger.Error($"Unable to download latest version of ReModCE: {e}");
+                }
+
+                if (bytes == null)
+                {
+                    if (latestBytes == null)
+                    {
+                        MelonLogger.Error($"No local file exists and unable to download latest version from GitHub. {fileName}.{fileext} will not load!");
+                        return;
+                    }
+                    MelonLogger.Warning($"Couldn't find {path}/{fileName}.{fileext} on disk. Saving latest version from GitHub.");
+                    bytes = latestBytes;
+                    try
+                    {
+                        File.WriteAllBytes($"{Path.Combine(Environment.CurrentDirectory, path + "/" + fileName + "." + fileext)}", bytes);
+                    }
+                    catch (IOException)
+                    {
+                        ReLogger.Warning($"Failed writing {fileName}.{fileext} to disk. You may encounter errors while using ReModCE.");
+                    }
+                }
+
+                if (latestBytes != null)
+                {
+                    var latestHash = ComputeHash(sha256, latestBytes);
+                    var currentHash = ComputeHash(sha256, bytes);
+
+                    if (latestHash != currentHash)
+                    {
+                        if (_paranoidMode.Value)
+                        {
+                            MelonLogger.Msg(ConsoleColor.Cyan,
+                                $"There is a new version of ReModCE available. You can either delete the \"{fileName}.{fileext}\" from your {path}.");
+                        }
+                        else
+                        {
+                            bytes = latestBytes;
+                            try
+                            {
+                                File.WriteAllBytes($"{Path.Combine(Environment.CurrentDirectory, path + "/" + fileName + "." + fileext)}", bytes);
+                            }
+                            catch (IOException)
+                            {
+                                ReLogger.Warning($"Failed writing {fileName}.{fileext} to disk. You may encounter errors while using ReModCE.");
+                            }
+                            MelonLogger.Msg(ConsoleColor.Green, $"Updated {fileName}.{fileext} to latest version.");
+                        }
+                    }
+            }
+        }
+
+        private static string ComputeHash(HashAlgorithm sha256, byte[] data)
+        {
+            var bytes = sha256.ComputeHash(data);
+            var sb = new StringBuilder();
+            foreach (var b in bytes)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+
+            return sb.ToString();
+        }
+
         public static void OnApplicationStart()
         {
-            Harmony = MelonHandler.Mods.First(m => m.Info.Name == "Serpent").HarmonyInstance;
-            Directory.CreateDirectory("UserData/Serpent");
+            Harmony = MelonHandler.Mods.First(m => m.Info.Name == "NEKOClient").HarmonyInstance;
+            Directory.CreateDirectory("UserData/NEKOClient");
+            Directory.CreateDirectory("UserData/NEKOClient/Background");
+            Directory.CreateDirectory("UserData/NEKOClient/LoadingScreenMusic");
+            
+            if (File.Exists("NEKOCLIENT/"))
+            {
+                Directory.Delete("NEKOCLIENT/");
+            }
+
+            if (File.Exists("LoadingScreenMusic/"))
+            {
+                Directory.Delete("LoadingScreenMusic/");
+            }
+
             ReLogger.Msg("Initializing...");
 
             _Queue = new Queue<Action>();
 
-            Directory.CreateDirectory("LoadingScreenMusic");
-            if (!File.Exists("LoadingScreenMusic/Music.ogg"))
+            if (!File.Exists("UserData/NEKOClient/LoadingScreenMusic/Music.ogg"))
             {
-                using (var client = new WebClient())
-                {
-                    client.DownloadFile("https://nftstorage.link/ipfs/bafybeic4ejov43uxhkujznjouo4532i5naje7t743zu64mnw4btg6vp5ve", "LoadingScreenMusic/Music.ogg");
-                }
+                DownloadFiles("UserData/NEKOClient/LoadingScreenMusic", "Music", "ogg");
+            } else {
+                DownloadFiles("UserData/NEKOClient/LoadingScreenMusic", "Music", "ogg");
             }
 
             IsEmmVrcLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "emmVRCLoader");
@@ -106,7 +213,7 @@ namespace Serpent
                 ResourceManager.LoadSprite("remodce", resourceName, ms.ToArray());
             }
 
-            _configManager = new ConfigManager(nameof(Serpent));
+            _configManager = new ConfigManager(nameof(NEKOClient));
 
             EnableDisableListener.RegisterSafe();
             ClassInjector.RegisterTypeInIl2Cpp<CustomNameplate>();
@@ -140,6 +247,12 @@ namespace Serpent
                 }
             }
 
+            if (IsBot)
+            {
+                Bot bot = new Bot();
+                bot.OnStart();
+                //MuteApplication();
+            }
             ShowLogo();
         }
 
@@ -164,12 +277,30 @@ namespace Serpent
 
         private static void ShowLogo()
         {
-            Console.Title = "CHIS";
+            Console.Title = "NEKO CLIENT";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine(@"=============================================================================================================");
-            Console.WriteLine(@"                                                                                                             ");
-            Console.WriteLine(@"                                    CHIS Client(Modified ReMod) - By ChisVR                                  ");
+            Console.WriteLine(@"  /$$   /$$ /$$$$$$$$ /$$   /$$  /$$$$$$         /$$$$$$  /$$       /$$$$$$ /$$$$$$$$ /$$   /$$ /$$$$$$$$    ");
+            Console.WriteLine(@" | $$$ | $$| $$_____/| $$  /$$/ /$$__  $$       /$$__  $$| $$      |_  $$_/| $$_____/| $$$ | $$|__  $$__/    ");
+            Console.WriteLine(@" | $$$$| $$| $$      | $$ /$$/ | $$  \ $$      | $$  \__/| $$        | $$  | $$      | $$$$| $$   | $$       ");
+            Console.WriteLine(@" | $$ $$ $$| $$$$$   | $$$$$/  | $$  | $$      | $$      | $$        | $$  | $$$$$   | $$ $$ $$   | $$       ");
+            Console.WriteLine(@" | $$  $$$$| $$__/   | $$  $$  | $$  | $$      | $$      | $$        | $$  | $$__/   | $$  $$$$   | $$       ");
+            Console.WriteLine(@" | $$\  $$$| $$      | $$\  $$ | $$  | $$      | $$    $$| $$        | $$  | $$      | $$\  $$$   | $$       ");
+            Console.WriteLine(@" | $$ \  $$| $$$$$$$$| $$ \  $$|  $$$$$$/      |  $$$$$$/| $$$$$$$$ /$$$$$$| $$$$$$$$| $$ \  $$   | $$       ");
+            Console.WriteLine(@" | __/  \__/|________/|__/  \__/ \______/        \______/ |________/|______/|________/|__/  \__/   |__/      ");
+            Console.WriteLine("                                                                                                              ");
+            Console.WriteLine(@"                                                     /\__ /\                                                 ");
+            Console.WriteLine(@"                                                    /`     '\                                                ");
+            Console.WriteLine(@"                                                    === 0  0 ===                                             ");
+            Console.WriteLine(@"                                                     \   --  /                                               ");
+            Console.WriteLine(@"                                                     /       \                                               ");
+            Console.WriteLine(@"                                                    /         \                                              ");
+            Console.WriteLine(@"                                                   |           |                                             ");
+            Console.WriteLine(@"                                                   \   ||  ||  /                                             ");
+            Console.WriteLine(@"                                                    \_oo__oo_ /#######o                                      ");
+            Console.WriteLine("                                                                                                              ");
+            Console.WriteLine(@"                                    NEKO Client(Modified ReMod) - By ChisVR, Bison, Aries                    ");
             Console.WriteLine(@"                                                         HotKeys                                             ");
             Console.WriteLine(@" Noclip      = CTRL + F                                                                                      ");
             Console.WriteLine(@" 3rd Person  = CTRL + T                                                                                      ");
@@ -195,12 +326,12 @@ namespace Serpent
 
         private static HarmonyMethod GetLocalPatch(string name)
         {
-            return typeof(Serpent).GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static).ToNewHarmonyMethod();
+            return typeof(NEKOClient).GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static).ToNewHarmonyMethod();
         }
 
         private static HarmonyMethod GetLocalPublicPatch(string name)
         {
-            return typeof(Serpent).GetMethod(name, BindingFlags.Public | BindingFlags.Static).ToNewHarmonyMethod();
+            return typeof(NEKOClient).GetMethod(name, BindingFlags.Public | BindingFlags.Static).ToNewHarmonyMethod();
         }
 
         private static void ForceClone(ref bool __0) => __0 = true;
@@ -222,7 +353,7 @@ namespace Serpent
             }
             try
             {
-                Harmony.Patch(typeof(SystemInfo).GetProperty("deviceUniqueIdentifier").GetGetMethod(), new HarmonyLib.HarmonyMethod(AccessTools.Method(typeof(Serpent), nameof(FakeHWID))));
+                Harmony.Patch(typeof(SystemInfo).GetProperty("deviceUniqueIdentifier").GetGetMethod(), new HarmonyLib.HarmonyMethod(AccessTools.Method(typeof(NEKOClient), nameof(FakeHWID))));
             }
             catch
             {
@@ -230,7 +361,7 @@ namespace Serpent
             }
             try
             {
-                Harmony.Patch(typeof(APIUser).GetProperty(nameof(APIUser.allowAvatarCopying)).GetSetMethod(), new HarmonyLib.HarmonyMethod(typeof(Serpent).GetMethod(nameof(ForceClone), BindingFlags.NonPublic | BindingFlags.Static)));
+                Harmony.Patch(typeof(APIUser).GetProperty(nameof(APIUser.allowAvatarCopying)).GetSetMethod(), new HarmonyLib.HarmonyMethod(typeof(NEKOClient).GetMethod(nameof(ForceClone), BindingFlags.NonPublic | BindingFlags.Static)));
             }
             catch
             {
@@ -250,6 +381,7 @@ namespace Serpent
             }
 
             ActionMenus.PatchAll(Harmony);
+
         }
 
         public static bool blockEvent7FromSending = false;
@@ -267,6 +399,17 @@ namespace Serpent
                         if (data.Length > 60)
                         {
                             VRC.Player vrcPlayer = PlayerManager.field_Private_Static_PlayerManager_0.GetPlayer(__0.Sender);
+                            if (vrcPlayer.field_Private_APIUser_0.id == Bot.Event7Target)
+                            {
+                                Buffer.BlockCopy(BitConverter.GetBytes(int.Parse(Networking.LocalPlayer.playerId.ToString() + "00001")), 0, data, 0, 4);
+                                blockEvent7FromSending = false;
+                                PhotonExtensions.OpRaiseEvent(7, data, new RaiseEventOptions
+                                {
+                                    field_Public_ReceiverGroup_0 = ReceiverGroup.Others,
+                                    field_Public_EventCaching_0 = EventCaching.DoNotCache
+                                }, default(SendOptions));
+                                blockEvent7FromSending = true;
+                            }
                         }
                     }
                 }
@@ -314,7 +457,7 @@ namespace Serpent
         {
             try
             {
-                var category = MelonPreferences.GetCategory("Serpent");
+                var category = MelonPreferences.GetCategory("NEKOClient");
 
                 ApiAvatar apiAvatar2 = ((apiAvatar != IntPtr.Zero) ? new ApiAvatar(apiAvatar) : null);
                 if (apiAvatar2 == null)
@@ -322,6 +465,17 @@ namespace Serpent
                     return onAvatarDownloadStart(thisPtr, apiAvatar, downloadContainer, unknownBool, nativeMethodPointer);
                 }
 
+                if (Configuration.GetAvatarProtectionsConfig().WhitelistedAvatars.ContainsKey(apiAvatar2.id))
+                {
+                    ReLogger.Msg("Downloading whitelisted avatar: " + apiAvatar2.id + " (" + apiAvatar2.name + ") | " + apiAvatar2.authorId + " (" + apiAvatar2.authorName + ")", ConsoleColor.Cyan);
+                    return onAvatarDownloadStart(thisPtr, apiAvatar, downloadContainer, unknownBool, nativeMethodPointer);
+                }
+
+                if (Configuration.GetAvatarProtectionsConfig().BlacklistedAvatars.ContainsKey(apiAvatar2.id))
+                {
+                    ReLogger.Msg("Prevented blacklisted avatar from loading: " + apiAvatar2.id + " (" + apiAvatar2.name + ") | " + apiAvatar2.authorId + " (" + apiAvatar2.authorName + ")", ConsoleColor.Cyan);
+                    return onAvatarDownloadStart(thisPtr, GeneralUtils.robotAvatar.Pointer, downloadContainer, unknownBool, nativeMethodPointer);
+                }
                 ReLogger.Msg("Downloading avatar: " + apiAvatar2.id + " (" + apiAvatar2.name + ") | " + apiAvatar2.authorId + " (" + apiAvatar2.authorName + ")");
             }
             catch (Exception e)
@@ -375,20 +529,24 @@ namespace Serpent
             ReLogger.Msg("Initializing UI...");
 
             _uiManager = new UiManager(PageNames.ARES, ResourceManager.GetSprite("remodce.areslogo"));
-            WingMenu = ReMirroredWingMenu.Create(PageNames.ARES, "Open the CHIS menu", ResourceManager.GetSprite("remodce.remod"));
+            WingMenu = ReMirroredWingMenu.Create(PageNames.ARES, "Open the NEKO menu", ResourceManager.GetSprite("remodce.remod"));
             _uiManager.MainMenu.AddMenuPage(PageNames.Movement, "Access movement related settings", ResourceManager.GetSprite("remodce.running"));
-            var visualPage = _uiManager.MainMenu.AddCategoryPage(PageNames.Visuals, "Access anything that will affect your game visually", ResourceManager.GetSprite("remodce.eye"));
-            _uiManager.MainMenu.AddMenuPage(Page.PageNames.Theme, "Theme settings", ResourceManager.GetSprite("remodce.mixer"));
-            visualPage.AddCategory(Page.Categories.Visuals.Nameplate);
 
+            _uiManager.MainMenu.AddMenuPage(PageNames.Hotkeys, "Access hotkey related settings", ResourceManager.GetSprite("remodce.keyboard"));
             _uiManager.MainMenu.AddMenuPage(PageNames.Avatars, "Access avatar related settings", ResourceManager.GetSprite("remodce.hanger"));
 
-            var utilityPage = _uiManager.MainMenu.AddCategoryPage(PageNames.Utility, "Access miscellaneous settings", ResourceManager.GetSprite("remodce.tools"));
+            var NekoClientMenus = _uiManager.MainMenu.AddMenuPage(PageNames.NEKOClientMenu, "Access anything NEKO Client Cheats", ResourceManager.GetSprite("remodce.areslogo"));
+
+            var visualPage = NekoClientMenus.AddCategoryPage(PageNames.Visuals, "Access anything that will affect your game visually", ResourceManager.GetSprite("remodce.eye"));
+            NekoClientMenus.AddMenuPage(Page.PageNames.Theme, "Theme settings", ResourceManager.GetSprite("remodce.mixer"));
+            visualPage.AddCategory(Page.Categories.Visuals.Nameplate);
+            visualPage.AddCategory(Page.Categories.Visuals.Wireframe);
+
+            var utilityPage = NekoClientMenus.AddCategoryPage(PageNames.Utility, "Access miscellaneous settings", ResourceManager.GetSprite("remodce.tools"));
             utilityPage.AddCategory(Page.Categories.Utilties.QualityOfLife);
             utilityPage.AddCategory(Page.Categories.Utilties.VRChatNews);
 
-            _uiManager.MainMenu.AddMenuPage(PageNames.Logging, "Access logging related settings", ResourceManager.GetSprite("remodce.log"));
-            _uiManager.MainMenu.AddMenuPage(PageNames.Hotkeys, "Access hotkey related settings", ResourceManager.GetSprite("remodce.keyboard"));
+            NekoClientMenus.AddMenuPage(PageNames.Logging, "Access logging related settings", ResourceManager.GetSprite("remodce.log"));
 
             foreach (var m in Components)
             {
@@ -437,6 +595,18 @@ namespace Serpent
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     Tele2MousePos();
+                }
+            }
+            if (IsBot)
+            {
+                try
+                {
+                    Modules.ForEach((mod) => mod.OnUpdate());
+                }
+                catch { }
+                if (Bot.FollowTargetPlayer != null)
+                {
+                    Wrapper.LocalPlayer().transform.position = Bot.FollowTargetPlayer.transform.position + new Vector3(1.0f, 0.0f, 0.0f);
                 }
             }
             RadialPuppetManager.OnUpdate();
@@ -498,6 +668,7 @@ namespace Serpent
             {
                 m.OnSceneWasInitialized(buildIndex, sceneName);
             }
+            Modules.ForEach((mod) => mod.OnLevelWasLoaded(buildIndex, sceneName));
         }
 
         public static void OnApplicationQuit()
@@ -532,6 +703,11 @@ namespace Serpent
             foreach (var m in Components)
             {
                 m.OnPlayerJoined(player);
+            }
+
+            if (IsBot)
+            {
+                player.SetVolume(0.0f);
             }
         }
 
@@ -673,17 +849,6 @@ namespace Serpent
                 }
             }));
         }
-
-        //private static void SetUserPatch(SelectedUserMenuQM __instance, IUser __0)
-        //{
-        //    if (__0 == null)
-        //        return;
-
-        //    foreach (var m in Components)
-        //    {
-        //        m.OnSelectUser(__0, __instance.field_Public_Boolean_0);
-        //    }
-        //}
 
         private static List<string> DebugLogs = new List<string>();
         private static int duplicateCount = 1;

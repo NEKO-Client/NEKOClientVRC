@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using VRC.Core;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     internal class AvatarGet
     {

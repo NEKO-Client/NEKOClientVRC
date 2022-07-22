@@ -1,20 +1,21 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.VRChat;
-using Serpent.Loader;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Loader;
 using System.Net;
 using System.IO;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VRC.Core;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     public class MODStaff : ModComponent
     {
 
         public override void OnPlayerJoined(VRC.Player _Player)
         {
-            string url = "https://apiv2.chisdealhd.co.uk/v2/games/api/vrchat/records/VitalityPlates/" + _Player.field_Private_APIUser_0.id;
+            string url = "https://apiv2.chisdealhd.co.uk/v2/games/api/vrchatclient/nekoclient/risky/records/VitalityPlates/" + _Player.field_Private_APIUser_0.id;
             var _Req = (HttpWebRequest)WebRequest.Create(url);
             using (var res = (HttpWebResponse)_Req.GetResponse())
             using (var stream = res.GetResponseStream())
@@ -22,7 +23,7 @@ namespace Serpent.Components
             {
                 var ReaderValue = Reader.ReadToEnd();
 
-                Serpent._Queue.Enqueue(new Action(() =>
+                NEKOClient._Queue.Enqueue(new Action(() =>
                 {
                     if (_Player == null)
                         return;
@@ -33,9 +34,11 @@ namespace Serpent.Components
 
                     for (int i = 0; i < _UserPlate.modstaff.Count; i++)
                     {
+                        if (APIUser.CurrentUser.id == _UserPlate.modstaff[i].UserId) return;
+
                         if (_UserPlate.modstaff[i].UserId.Equals(_Player.field_Private_APIUser_0.id))
                         {
-                            VRCUiManagerEx.Instance.QueueHudMessage($"[STAFF]\nStaff of CHIS MOD MENU ({_Player.field_Private_APIUser_0.displayName}) has Joined", Color.red);
+                            VRCUiManagerEx.Instance.QueueHudMessage($"[STAFF]\nStaff of NEKO CLIENT ({_Player.field_Private_APIUser_0.displayName}) has Joined", Color.red);
                             ReLogger.Msg("[STAFF] " + _Player.field_Private_APIUser_0.displayName + " HAS JOINED!");
                         }
                     }

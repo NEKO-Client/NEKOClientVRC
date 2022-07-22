@@ -7,8 +7,8 @@
     <ProjectGuid>{4EA50331-5D4E-47D3-BDA5-260600CFF84C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Serpent</RootNamespace>
-    <AssemblyName>Serpent</AssemblyName>
+    <RootNamespace>NEKOClient</RootNamespace>
+    <AssemblyName>NEKOClient</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -282,12 +282,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationBot\Bot.cs" />
+    <Compile Include="ApplicationBot\MenuExtensions.cs" />
+    <Compile Include="ApplicationBot\ObjectExtensions.cs" />
+    <Compile Include="ApplicationBot\PlayerExtentions.cs" />
+    <Compile Include="ApplicationBot\RoomExtensions.cs" />
+    <Compile Include="ApplicationBot\SocketConnection.cs" />
+    <Compile Include="AvatarPostProcess\AntiCrashClothPostProcess.cs" />
+    <Compile Include="AvatarPostProcess\AntiCrashDynamicBoneColliderPostProcess.cs" />
+    <Compile Include="AvatarPostProcess\AntiCrashDynamicBonePostProcess.cs" />
+    <Compile Include="AvatarPostProcess\AntiCrashLightSourcePostProcess.cs" />
+    <Compile Include="AvatarPostProcess\AntiCrashMaterialPostProcess.cs" />
+    <Compile Include="AvatarPostProcess\AntiCrashParticleSystemPostProcess.cs" />
+    <Compile Include="AvatarPostProcess\AntiCrashRendererPostProcess.cs" />
+    <Compile Include="AvatarPostProcess\AntiCrashShaderPostProcess.cs" />
     <Compile Include="Components\AvatarFavoritesComponent.cs" />
     <Compile Include="Components\AvatarSeenHistoryComponent.cs" />
     <Compile Include="Components\CalibrationSavingComponent.cs" />
     <Compile Include="Components\CopyUserInformationComponent.cs" />
     <Compile Include="Components\ClockComponent.cs" />
     <Compile Include="Components\DisableChairComponent.cs" />
+    <Compile Include="Components\DiscordPopupComponent.cs" />
     <Compile Include="Components\EmojiBlocker.cs" />
     <Compile Include="Components\FlyComponent.cs" />
     <Compile Include="Components\DebugMenuComponent.cs" />
@@ -295,6 +310,7 @@
     <Compile Include="Components\CustomLoadingMusicComponent.cs" />
     <Compile Include="Components\ComfyMenuComponent.cs" />
     <Compile Include="Components\MODStaff.cs" />
+    <Compile Include="Components\REUploaderALERTWarning.cs" />
     <Compile Include="Components\PlayersListComponent.cs" />
     <Compile Include="Components\SpeedComponent.cs" />
     <Compile Include="Components\RotatorComponent.cs" />
@@ -312,11 +328,14 @@
     <Compile Include="Components\RestartButtonComponent.cs" />
     <Compile Include="Components\TeleportComponent.cs" />
     <Compile Include="Components\ThirdPersonComponent.cs" />
-    <Compile Include="Components\VRCStaffProtections.cs" />
     <Compile Include="Components\VRCNewsAdjustment.cs" />
+    <Compile Include="Components\VRCStaffProtections.cs" />
+    <Compile Include="Config\AvatarProtectionConfig.cs" />
+    <Compile Include="Config\Config.cs" />
     <Compile Include="ControlSchemes\DefaultControlScheme.cs" />
     <Compile Include="ControlSchemes\Interface\IControlScheme.cs" />
     <Compile Include="ControlSchemes\JanNyaaControlScheme.cs" />
+    <Compile Include="Core\AntiCrashUtils.cs" />
     <Compile Include="Core\ApiError.cs" />
     <Compile Include="Core\BasicFunctions.cs" />
     <Compile Include="Core\BinaryGZipSerializer.cs" />
@@ -329,11 +348,7 @@
     <Compile Include="Mono\TagAnimation.cs" />
     <Compile Include="Mono\TagRainbowcs.cs" />
     <Compile Include="Mono\UpdateManager.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Page\Categories\NEKOClientMenu.cs" />
     <Compile Include="SDK\ModerationManagerExtension.cs" />
     <Compile Include="Page\Categories\Utilties.cs" />
     <Compile Include="Page\Categories\Visuals.cs" />
@@ -342,7 +357,10 @@
     <Compile Include="Core\ReAvatar.cs" />
     <Compile Include="Core\RotationSystem.cs" />
     <Compile Include="Core\RotatorPatches.cs" />
+    <Compile Include="Core\ShaderProxy.cs" />
+    <Compile Include="Core\ShaderUtils.cs" />
     <Compile Include="Core\TaskExtensions.cs" />
+    <Compile Include="Core\TSAC.cs" />
     <Compile Include="Core\Utilities.cs" />
     <Compile Include="extension.cs" />
     <Compile Include="Managers\QMLabel.cs" />
@@ -354,23 +372,9 @@
     <Compile Include="SDK\Utils\FastMethodInfo.cs" />
     <Compile Include="SDK\Utils\GeneralUtils.cs" />
     <Compile Include="Core\Serialization.cs" />
+    <Compile Include="ApplicationBot\VRCBotModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReMod.Cores\SerpentCore.Core.csproj">
-      <Project>{C87FE758-ACB9-4FA2-AF6F-10AA9AA0023C}</Project>
-      <Name>SerpentCore.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ReModCE.Loader\Serpent.Loader.csproj">
-      <Project>{6e5e0e59-73d9-4d74-b734-d040d26710c4}</Project>
-      <Name>Serpent.Loader</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\admin.png" />
     <EmbeddedResource Include="Resources\arms-up.png" />
     <EmbeddedResource Include="Resources\binoculars.png" />
@@ -412,6 +416,7 @@
     <EmbeddedResource Include="Resources\running.png" />
     <EmbeddedResource Include="Resources\search.png" />
     <EmbeddedResource Include="Resources\server.png" />
+    <EmbeddedResource Include="Resources\shader.png" />
     <EmbeddedResource Include="Resources\shield.png" />
     <EmbeddedResource Include="Resources\skull.png" />
     <EmbeddedResource Include="Resources\smoke.png" />
@@ -430,6 +435,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\areslogo.png" />
     <EmbeddedResource Include="Resources\ares_panel.png" />
+    <EmbeddedResource Include="Resources\DxbcShaderFilter.dll" />
     <Content Include="Resources\blind.png" />
     <EmbeddedResource Include="Resources\broom.png" />
     <EmbeddedResource Include="Resources\legs.png" />
@@ -449,7 +455,16 @@
     <Content Include="Resources\weapons.png" />
     <EmbeddedResource Include="Resources\world.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ReMod.Cores\NEKOClientCore.Core.csproj">
+      <Project>{c87fe758-acb9-4fa2-af6f-10aa9aa0023c}</Project>
+      <Name>NEKOClientCore.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReModCE.Loader\NEKOClient.Loader.csproj">
+      <Project>{6e5e0e59-73d9-4d74-b734-d040d26710c4}</Project>
+      <Name>NEKOClient.Loader</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y $(TargetFileName) S:\Games\steamapps\common\VRChat\$(TargetFileName)

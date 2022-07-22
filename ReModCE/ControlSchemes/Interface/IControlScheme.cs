@@ -1,4 +1,4 @@
-﻿namespace Serpent.ControlSchemes.Interface
+﻿namespace NEKOClient.ControlSchemes.Interface
 {
 
     using UnityEngine;

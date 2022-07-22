@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SerpentCore.Core.UI.QuickMenu
+namespace NEKOClientCore.Core.UI.QuickMenu
 {
     public interface IButtonPage
     {

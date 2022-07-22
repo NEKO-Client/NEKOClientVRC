@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Serpent
+namespace NEKOClient
 {
     internal static class Misc
     {

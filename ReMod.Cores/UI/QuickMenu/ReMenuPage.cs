@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using SerpentCore.Core.Unity;
-using SerpentCore.Core.VRChat;
+using NEKOClientCore.Core.Unity;
+using NEKOClientCore.Core.VRChat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +9,7 @@ using VRC.UI.Elements;
 using VRC.UI.Elements.Menus;
 using Object = UnityEngine.Object;
 
-namespace SerpentCore.Core.UI.QuickMenu
+namespace NEKOClientCore.Core.UI.QuickMenu
 {
     public class ReMenuPage : UiElement, IButtonPage
     {

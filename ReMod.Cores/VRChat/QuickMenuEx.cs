@@ -5,7 +5,7 @@ using VRC.UI.Elements;
 using VRC.UI.Elements.Menus;
 using VRC.UI.Shared;
 
-namespace SerpentCore.Core.VRChat
+namespace NEKOClientCore.Core.VRChat
 {
     public static class QuickMenuEx
     {

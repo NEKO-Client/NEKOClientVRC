@@ -1,5 +1,5 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +8,7 @@ using VRC.Core;
 using VRC.UI;
 using Object = UnityEngine.Object;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal sealed class InstanceDejavuComponent : ModComponent
     {
@@ -24,11 +24,11 @@ namespace Serpent.Components
             foreach (var m in typeof(UiWorldInstanceList).GetMethods().Where(m =>
                 m.Name.StartsWith("Method_Protected_Virtual_Void_VRCUiContentButton_Object_")))
             {
-                Serpent.Harmony.Patch(m, postfix: GetLocalPatch(nameof(OnInstanceContentButtonGenerationPostfix)));
+                NEKOClient.Harmony.Patch(m, postfix: GetLocalPatch(nameof(OnInstanceContentButtonGenerationPostfix)));
             }
 
             var selectWorldInstance = typeof(PageWorldInfo).GetMethods().Single(m => XrefUtils.CheckMethod(m, "Make Home") && m.Name.StartsWith("Method_Private_Void_") && m.Name.Length < 22);
-            Serpent.Harmony.Patch(selectWorldInstance, postfix: GetLocalPatch(nameof(UpdateWorldMainPicker)));
+            NEKOClient.Harmony.Patch(selectWorldInstance, postfix: GetLocalPatch(nameof(UpdateWorldMainPicker)));
         }
 
         public override void OnUiManagerInit(UiManager uiManager)

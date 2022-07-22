@@ -1,8 +1,8 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class JoinNotifyComponent : ModComponent
     {

@@ -1,11 +1,11 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using Serpent.Loader;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClient.Loader;
 using System;
 using VRC;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class InfoLogsComponent : ModComponent
     {
@@ -34,7 +34,7 @@ namespace Serpent.Components
             if (player == null) return;
             if (player.field_Private_APIUser_0 == null) return;
             ReLogger.Msg(ConsoleColor.Cyan, $"{player.field_Private_APIUser_0.displayName ?? string.Empty} joined the instance.");
-            Serpent.LogDebug($"<color=green>{player.field_Private_APIUser_0.displayName ?? string.Empty} joined the instance.</color>");
+            NEKOClient.LogDebug($"<color=green>{player.field_Private_APIUser_0.displayName ?? string.Empty} joined the instance.</color>");
         }
 
         public override void OnPlayerLeft(Player player)
@@ -43,7 +43,7 @@ namespace Serpent.Components
             if (player == null) return;
             if (player.field_Private_APIUser_0 == null) return;
             ReLogger.Msg(ConsoleColor.White, $"{player.field_Private_APIUser_0.displayName ?? string.Empty} left the instance.");
-            Serpent.LogDebug(
+            NEKOClient.LogDebug(
                 $"<color=#fc4903>{player.field_Private_APIUser_0.displayName ?? string.Empty} left the instance.</color>");
         }
     }

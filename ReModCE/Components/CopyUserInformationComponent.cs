@@ -1,11 +1,11 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.VRChat;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.VRChat;
 using UnityEngine;
 using VRC;
 using VRC.Core;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal sealed class CopyUserInformationComponent : ModComponent
     {

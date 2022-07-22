@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SerpentCore.Core.VRChat;
+using NEKOClientCore.Core.VRChat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.UI.Elements;
 using Object = UnityEngine.Object;
 
-namespace SerpentCore.Core.UI.QuickMenu
+namespace NEKOClientCore.Core.UI.QuickMenu
 {
     public class ReMenuSliderContainer : UiElement
     {

@@ -2,7 +2,7 @@
 using UnhollowerBaseLib;
 
 //Contains all basic functions reqires for ARES to operate
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     internal static class BaseFuncs
     {

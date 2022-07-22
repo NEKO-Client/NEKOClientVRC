@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI;
-using SerpentCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI;
+using NEKOClientCore.Core.UI.QuickMenu;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using UnityEngine;
 using VRC.Core;
 using VRC.SDKBase;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal sealed class InstanceHistoryComponent : ModComponent
     {
@@ -38,9 +38,9 @@ namespace Serpent.Components
         public InstanceHistoryComponent()
         {
 
-            if (File.Exists("UserData/Serpent/instance_history.json"))
+            if (File.Exists("UserData/NEKOClient/instance_history.json"))
             {
-                _instanceHistory = JsonConvert.DeserializeObject<List<SavedWorld>>(File.ReadAllText("UserData/Serpent/instance_history.json"));
+                _instanceHistory = JsonConvert.DeserializeObject<List<SavedWorld>>(File.ReadAllText("UserData/NEKOClient/instance_history.json"));
             }
 
             _instanceHistory ??= new List<SavedWorld>();
@@ -105,7 +105,7 @@ namespace Serpent.Components
                 }
 
                 _instanceHistory.Add(_currentSavedWorld);
-                File.WriteAllText("UserData/Serpent/instance_history.json", JsonConvert.SerializeObject(_instanceHistory));
+                File.WriteAllText("UserData/NEKOClient/instance_history.json", JsonConvert.SerializeObject(_instanceHistory));
 
                 if (_instanceHistoryMenu != null)
                     AddInstanceButton(_currentSavedWorld);
@@ -136,7 +136,7 @@ namespace Serpent.Components
             _instanceHistory.Add(_currentSavedWorld);
             AddInstanceButton(_currentSavedWorld);
 
-            File.WriteAllText("UserData/Serpent/instance_history.json", JsonConvert.SerializeObject(_instanceHistory));
+            File.WriteAllText("UserData/NEKOClient/instance_history.json", JsonConvert.SerializeObject(_instanceHistory));
         }
 
         private void ReverseButtonOrder()

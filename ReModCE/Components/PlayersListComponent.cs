@@ -1,12 +1,12 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
-using Serpent.Managers;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Managers;
 using TMPro;
 using UnityEngine;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class PlayersListComponent : ModComponent
     {

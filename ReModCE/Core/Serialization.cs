@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     internal static class Serialization
     {

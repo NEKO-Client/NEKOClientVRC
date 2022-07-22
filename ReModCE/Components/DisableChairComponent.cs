@@ -1,11 +1,11 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
 using VRC;
 using VRC.Core;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal sealed class DisableChairComponent : ModComponent
     {
@@ -15,7 +15,7 @@ namespace Serpent.Components
 
         public DisableChairComponent()
         {
-            Serpent.Harmony.Patch(typeof(VRC_StationInternal).GetMethod(nameof(VRC_StationInternal.Method_Public_Boolean_Player_Boolean_0)),
+            NEKOClient.Harmony.Patch(typeof(VRC_StationInternal).GetMethod(nameof(VRC_StationInternal.Method_Public_Boolean_Player_Boolean_0)),
                 GetLocalPatch(nameof(PlayerCanUseStation)));
 
             ChairsDisabled = new ConfigValue<bool>(nameof(ChairsDisabled), false);

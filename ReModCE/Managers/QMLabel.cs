@@ -1,10 +1,10 @@
-﻿using SerpentCore.Core.Managers;
+﻿using NEKOClientCore.Core.Managers;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Serpent.Managers
+namespace NEKOClient.Managers
 {
     public class QMLable
     {

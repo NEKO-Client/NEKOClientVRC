@@ -1,16 +1,16 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
-using Serpent.ControlSchemes;
-using Serpent.Core;
-using Serpent.Loader;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.ControlSchemes;
+using NEKOClient.Core;
+using NEKOClient.Loader;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC;
 using VRC.Core;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     public class RotatorComponent : ModComponent
     {
@@ -62,7 +62,7 @@ namespace Serpent.Components
             }
             else RotationSystem.CurrentControlScheme = new DefaultControlScheme();
 
-            ReLogger.Msg("SerpentCore-PlayerRotator " + Version);
+            ReLogger.Msg("NEKOClientCore-PlayerRotator " + Version);
         }
 
         public override void OnUiManagerInit(UiManager uiManager)

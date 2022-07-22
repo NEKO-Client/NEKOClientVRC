@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SerpentCore.Core.Managers
+namespace NEKOClientCore.Core.Managers
 {
     public static class ResourceManager
     {

@@ -2,7 +2,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     internal static class PhotonExtensions
     {

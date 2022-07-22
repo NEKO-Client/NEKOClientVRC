@@ -1,11 +1,11 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using Serpent.Managers;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClient.Managers;
 using System;
 using UnityEngine;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal enum ThirdPersonMode
     {

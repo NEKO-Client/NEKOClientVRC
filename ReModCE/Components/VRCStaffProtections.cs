@@ -1,8 +1,9 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.VRChat;
-using Serpent.Loader;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Loader;
 
-namespace Serpent.Components
+
+namespace NEKOClient.Components
 {
     public class VRCStaffProtections : ModComponent
     {

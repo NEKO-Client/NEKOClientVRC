@@ -1,4 +1,4 @@
-﻿namespace Serpent
+﻿namespace NEKOClient
 {
     public static class extension
     {

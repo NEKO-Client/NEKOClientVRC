@@ -1,13 +1,13 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using SerpentCore.Core.VRChat;
-using Serpent.Managers;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Managers;
 using System;
 using UnityEngine;
 using VRC.UI.Elements;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class ClockComponent : ModComponent
     {
@@ -38,7 +38,7 @@ namespace Serpent.Components
 
         public override void OnUpdate()
         {
-            if (Serpent._readyQA)
+            if (NEKOClient._readyQA)
             {
                 if (firstRun)
                 {
@@ -47,7 +47,7 @@ namespace Serpent.Components
                 }
                 if (ClockEnabled)
                 {                 
-                    Serpent._hudClock.text = DateTime.Now.ToString("HH:mm:ss");
+                    NEKOClient._hudClock.text = DateTime.Now.ToString("HH:mm:ss");
                 }
             }         
         }
@@ -56,11 +56,11 @@ namespace Serpent.Components
         {
             if (ClockEnabled)
             {
-                Serpent._hudObj.SetActive(true);
+                NEKOClient._hudObj.SetActive(true);
             }
             else
             {
-                Serpent._hudObj.SetActive(false);
+                NEKOClient._hudObj.SetActive(false);
             }
         }
     }

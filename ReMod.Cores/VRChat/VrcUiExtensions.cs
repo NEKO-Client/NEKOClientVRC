@@ -9,7 +9,7 @@ using VRC.UI.Core;
 using VRC.UI.Elements;
 using VRC.UI.Elements.Controls;
 
-namespace SerpentCore.Core.VRChat
+namespace NEKOClientCore.Core.VRChat
 {
     public static class VrcUiExtensions
     {

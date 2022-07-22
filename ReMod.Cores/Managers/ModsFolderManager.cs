@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using SerpentCore.Core.Api;
-using SerpentCore.Core.Helpers;
+using NEKOClientCore.Core.Api;
+using NEKOClientCore.Core.Helpers;
 
-namespace SerpentCore.Core.Managers
+namespace NEKOClientCore.Core.Managers
 {
     internal static class ModsFolderManager
     {

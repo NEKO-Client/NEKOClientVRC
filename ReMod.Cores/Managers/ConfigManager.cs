@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SerpentCore.Core.Managers
+namespace NEKOClientCore.Core.Managers
 {
     public class ConfigManager
     {

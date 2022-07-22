@@ -1,10 +1,10 @@
 using System;
 using MelonLoader;
-using SerpentCore.Core.Helpers;
-using SerpentCore.Core.Managers;
+using NEKOClientCore.Core.Helpers;
+using NEKOClientCore.Core.Managers;
 using UnityEngine;
 
-namespace SerpentCore.Core.Api
+namespace NEKOClientCore.Core.Api
 {
     /// <summary>
     /// General Action Menu Things

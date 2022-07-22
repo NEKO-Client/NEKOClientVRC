@@ -1,9 +1,9 @@
 ﻿using System;
-using SerpentCore.Core.VRChat;
+using NEKOClientCore.Core.VRChat;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SerpentCore.Core.UI.Wings
+namespace NEKOClientCore.Core.UI.Wings
 {
     public class ReWingToggle
     {

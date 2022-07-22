@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
 using MelonLoader;
-using SerpentCore.Core.Helpers;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.Pedals;
+using NEKOClientCore.Core.Helpers;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.Pedals;
 
-namespace SerpentCore.Core
+namespace NEKOClientCore.Core
 {
     public class ActionMenus
     {

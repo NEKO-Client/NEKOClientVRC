@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SerpentCore.Core.UI.Wings
+namespace NEKOClientCore.Core.UI.Wings
 {
     public class ReMirroredWingToggle
     {

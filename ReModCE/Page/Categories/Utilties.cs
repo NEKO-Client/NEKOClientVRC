@@ -1,4 +1,4 @@
-﻿namespace Serpent.Page.Categories
+﻿namespace NEKOClient.Page.Categories
 {
     public static class Utilties
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Serpent.Mono
+namespace NEKOClient.Mono
 {
     internal class Platemanager : MonoBehaviour
     {

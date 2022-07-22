@@ -1,10 +1,10 @@
 ﻿using MelonLoader;
-using Serpent.Loader;
-using Serpent.SDK.Utils;
+using NEKOClient.Loader;
+using NEKOClient.SDK.Utils;
 using System.Collections;
 using UnityEngine;
 
-namespace Serpent.SDK
+namespace NEKOClient.SDK
 {
     internal class GeneralWrapper
     {

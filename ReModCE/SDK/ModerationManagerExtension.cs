@@ -2,7 +2,7 @@
 using VRC.Core;
 using VRC.Management;
 
-namespace Serpent.SDK
+namespace NEKOClient.SDK
 {
     internal static class ModerationManagerExtension
     {

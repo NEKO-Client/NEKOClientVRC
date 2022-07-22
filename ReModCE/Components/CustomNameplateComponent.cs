@@ -1,10 +1,10 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
-using Serpent.Core;
-using Serpent.Loader;
-using Serpent.Managers;
-using Serpent.SDK;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
+using NEKOClient.Core;
+using NEKOClient.Loader;
+using NEKOClient.Managers;
+using NEKOClient.SDK;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,9 +15,9 @@ using TMPro;
 using UnityEngine;
 using VRC;
 using VRC.Core;
-using SerpentCore.Core.VRChat;
+using NEKOClientCore.Core.VRChat;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     public class CustomNameplate : MonoBehaviour
     {
@@ -101,6 +101,9 @@ namespace Serpent.Components
             Enabled = false;
             statsText.gameObject.SetActive(false);
             statsText.text = null;
+            CustomNameplate nameplate = player.transform.Find("Player Nameplate/Canvas/Nameplate").gameObject.GetComponent<CustomNameplate>();
+            nameplate.Dispose();
+
         }
     }
 
@@ -134,6 +137,9 @@ namespace Serpent.Components
                 CustomNameplate nameplate = player.transform.Find("Player Nameplate/Canvas/Nameplate").gameObject.AddComponent<CustomNameplate>();
                 nameplate.player = player;
                 nameplate.OverRender = NamePlateOverRenderEnabled;
+            } else {
+                CustomNameplate nameplate = player.transform.Find("Player Nameplate/Canvas/Nameplate").gameObject.GetComponent<CustomNameplate>();
+                nameplate.Dispose();
             }
 
             player.gameObject.AddComponent<Mono.Platemanager>();
@@ -161,7 +167,7 @@ namespace Serpent.Components
         {
 
             if (alreadyGenerated.Contains(_Player.field_Private_APIUser_0.id)) return null;
-            string url = "https://apiv2.chisdealhd.co.uk/v2/games/api/vrchat/records/VitalityPlates/" + _Player.field_Private_APIUser_0.id;
+            string url = "https://apiv2.chisdealhd.co.uk/v2/games/api/vrchatclient/nekoclient/risky/records/VitalityPlates/" + _Player.field_Private_APIUser_0.id;
             var _Req = (HttpWebRequest)WebRequest.Create(url);
             using (var res = (HttpWebResponse)_Req.GetResponse())
             using (var stream = res.GetResponseStream())
@@ -169,7 +175,7 @@ namespace Serpent.Components
             {
                 var ReaderValue = Reader.ReadToEnd();
 
-                Serpent._Queue.Enqueue(new Action(() =>
+                NEKOClient._Queue.Enqueue(new Action(() =>
                 {
                     if (_Player == null)
                         return;

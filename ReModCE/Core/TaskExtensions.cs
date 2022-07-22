@@ -1,7 +1,7 @@
-﻿using Serpent.Loader;
+﻿using NEKOClient.Loader;
 using System.Threading.Tasks;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     internal static class TaskExtensions
     {

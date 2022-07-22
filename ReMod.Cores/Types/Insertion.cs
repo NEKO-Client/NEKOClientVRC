@@ -1,4 +1,4 @@
-﻿namespace SerpentCore.Core.Types
+﻿namespace NEKOClientCore.Core.Types
 {
     /// <summary>
     ///     Whether your pedal on the vrchat pages should be placed before or after vrchat's pedals

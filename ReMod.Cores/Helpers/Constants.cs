@@ -1,4 +1,4 @@
-﻿namespace SerpentCore.Core.Helpers
+﻿namespace NEKOClientCore.Core.Helpers
 {
     internal static class Constants
     {

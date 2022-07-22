@@ -1,11 +1,11 @@
 ﻿using System;
-using SerpentCore.Core.VRChat;
+using NEKOClientCore.Core.VRChat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.UI.Core.Styles;
 
-namespace SerpentCore.Core.UI.Wings
+namespace NEKOClientCore.Core.UI.Wings
 {
     public class ReWingButton : UiElement
     {

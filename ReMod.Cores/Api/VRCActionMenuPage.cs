@@ -1,11 +1,11 @@
 using System;
 using MelonLoader;
-using SerpentCore.Core.Pedals;
-using SerpentCore.Core.Types;
-using Serpent.Loader;
+using NEKOClientCore.Core.Pedals;
+using NEKOClientCore.Core.Types;
+using NEKOClient.Loader;
 using UnityEngine;
 
-namespace SerpentCore.Core.Api
+namespace NEKOClientCore.Core.Api
 {
     /// <summary>
     /// VRC Page specific things

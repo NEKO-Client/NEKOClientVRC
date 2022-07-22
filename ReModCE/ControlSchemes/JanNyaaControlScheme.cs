@@ -1,8 +1,8 @@
-﻿using Serpent.ControlSchemes.Interface;
-using Serpent.Core;
+﻿using NEKOClient.ControlSchemes.Interface;
+using NEKOClient.Core;
 using UnityEngine;
 
-namespace Serpent.ControlSchemes
+namespace NEKOClient.ControlSchemes
 {
     public class JanNyaaControlScheme : IControlScheme
     {

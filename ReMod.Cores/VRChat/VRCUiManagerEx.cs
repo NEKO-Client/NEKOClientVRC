@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace SerpentCore.Core.VRChat
+namespace NEKOClientCore.Core.VRChat
 {
     public class VRCUiManagerEx
     {

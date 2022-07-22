@@ -1,8 +1,8 @@
 ﻿using System;
-using SerpentCore.Core.Types;
+using NEKOClientCore.Core.Types;
 using UnityEngine;
 
-namespace SerpentCore.Core.Pedals
+namespace NEKOClientCore.Core.Pedals
 {
     public abstract class PedalStruct
     {

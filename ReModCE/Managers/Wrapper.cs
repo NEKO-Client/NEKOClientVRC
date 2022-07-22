@@ -1,6 +1,6 @@
-﻿using SerpentCore.Core.VRChat;
-using Serpent.Components;
-using Serpent.Core;
+﻿using NEKOClientCore.Core.VRChat;
+using NEKOClient.Components;
+using NEKOClient.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using VRC.Core;
 using VRC.Management;
 using VRC.SDKBase;
 
-namespace Serpent.Managers
+namespace NEKOClient.Managers
 {
     public static class Wrapper
     {
@@ -48,7 +48,7 @@ namespace Serpent.Managers
                 _NewPlate.transform.Find("PrefabPlate/Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = text;
                 _NewPlate.gameObject.name = $"_Plate:{text}";
                 return _NewPlate;
-            } catch(Exception ex) { Serpent.LogDebug("Yep its here"); }
+            } catch(Exception ex) { NEKOClient.LogDebug("Yep its here"); }
             
             return new GameObject();
         }

@@ -1,11 +1,11 @@
 ﻿using System;
 using MelonLoader;
-using SerpentCore.Core.Helpers;
-using SerpentCore.Core.Types;
+using NEKOClientCore.Core.Helpers;
+using NEKOClientCore.Core.Types;
 using UnityEngine;
 using UnityEngine.XR;
 
-namespace SerpentCore.Core.Managers
+namespace NEKOClientCore.Core.Managers
 {
     public static class FourAxisPuppetManager
     {

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using MelonLoader;
-using SerpentCore.Core.Pedals;
-using SerpentCore.Core.Types;
-using Serpent.Loader;
+using NEKOClientCore.Core.Pedals;
+using NEKOClientCore.Core.Types;
+using NEKOClient.Loader;
 using UnhollowerRuntimeLib.XrefScans;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace SerpentCore.Core.Helpers
+namespace NEKOClientCore.Core.Helpers
 {
     public static class Utilities
     {

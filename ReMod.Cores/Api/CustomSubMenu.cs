@@ -1,11 +1,11 @@
 using System;
-using SerpentCore.Core.Helpers;
-using SerpentCore.Core.Managers;
+using NEKOClientCore.Core.Helpers;
+using NEKOClientCore.Core.Managers;
 using UnityEngine;
 
 // ReSharper disable HeuristicUnreachableCode
 
-namespace SerpentCore.Core.Api
+namespace NEKOClientCore.Core.Api
 {
     /// <summary>
     ///     Class for adding buttons,toggles,radial puppets inside of a custom submenu

@@ -1,8 +1,8 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.Managers;
-using SerpentCore.Core.UI.QuickMenu;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.Managers;
+using NEKOClientCore.Core.UI.QuickMenu;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class EmojiBlocker : ModComponent
     {
@@ -15,7 +15,7 @@ namespace Serpent.Components
             EmojisEnabled = new ConfigValue<bool>(nameof(EmojisEnabled), true);
             EmojisEnabled.OnValueChanged += () => _emojiToggle?.Toggle(EmojisEnabled);
 
-            Serpent.Harmony.Patch(typeof(VRCPlayer).GetMethod(nameof(VRCPlayer.SpawnEmojiRPC)),
+            NEKOClient.Harmony.Patch(typeof(VRCPlayer).GetMethod(nameof(VRCPlayer.SpawnEmojiRPC)),
                 GetLocalPatch(nameof(SpawnEmojiRPCPatch)));
         }
 

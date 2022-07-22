@@ -1,12 +1,12 @@
-﻿using SerpentCore.Core;
-using SerpentCore.Core.UI;
-using SerpentCore.Core.VRChat;
-using Serpent.Loader;
+﻿using NEKOClientCore.Core;
+using NEKOClientCore.Core.UI;
+using NEKOClientCore.Core.VRChat;
+using NEKOClient.Loader;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class InstanceLinkComponent : ModComponent
     {
@@ -35,7 +35,7 @@ namespace Serpent.Components
                             var instanceId = s.Substring(instanceIdIndex + "&instanceId=".Length);
 
                             joinId = $"{worldId}:{instanceId}".Trim().TrimEnd('\r', '\n');
-                            Serpent.LogDebug($"Parsed {joinId} from join link!");
+                            NEKOClient.LogDebug($"Parsed {joinId} from join link!");
                             ReLogger.Msg($"Parsed {joinId} from join link!");
                         }
 

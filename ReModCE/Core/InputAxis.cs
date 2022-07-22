@@ -1,4 +1,4 @@
-﻿namespace Serpent.Core
+﻿namespace NEKOClient.Core
 {
     public static class InputAxes
     {

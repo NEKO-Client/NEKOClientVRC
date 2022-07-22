@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     public class NameplateModel
     {

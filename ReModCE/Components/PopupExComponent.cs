@@ -1,10 +1,10 @@
-﻿using SerpentCore.Core;
+﻿using NEKOClientCore.Core;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace Serpent.Components
+namespace NEKOClient.Components
 {
     internal class PopupExComponent : ModComponent
     {

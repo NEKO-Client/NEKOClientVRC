@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SerpentCore.Core.VRChat
+namespace NEKOClientCore.Core.VRChat
 {
     public class VRCConfig
     {

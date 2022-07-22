@@ -1,9 +1,9 @@
 ﻿using System;
-using SerpentCore.Core.Helpers;
-using SerpentCore.Core.Types;
+using NEKOClientCore.Core.Helpers;
+using NEKOClientCore.Core.Types;
 using UnityEngine;
 
-namespace SerpentCore.Core.Pedals
+namespace NEKOClientCore.Core.Pedals
 {
     public sealed class PedalToggle : PedalStruct
     {

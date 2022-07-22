@@ -1,6 +1,6 @@
 ﻿using MelonLoader;
-using Serpent.Components;
-using Serpent.ControlSchemes.Interface;
+using NEKOClient.Components;
+using NEKOClient.ControlSchemes.Interface;
 using System;
 using System.Collections;
 using UnhollowerRuntimeLib;
@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     public class RotationSystem
     {
@@ -101,7 +101,7 @@ namespace Serpent.Core
         {
 
             //if (FlyComponent. && state) ReModFly.isOn = false;
-            Serpent.RotatorEnabled = state;
+            NEKOClient.RotatorEnabled = state;
             if (!rotating) originalGravity = Physics.gravity;
 
             try
@@ -124,7 +124,7 @@ namespace Serpent.Core
             }
             catch (Exception e)
             {
-                Serpent.LogDebug("Error Toggling: " + e);
+                NEKOClient.LogDebug("Error Toggling: " + e);
                 rotating = false;
             }
 

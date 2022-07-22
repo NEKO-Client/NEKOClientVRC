@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SerpentCore.Core
+namespace NEKOClientCore.Core
 {
     internal static class AssemblyExtensions
     {

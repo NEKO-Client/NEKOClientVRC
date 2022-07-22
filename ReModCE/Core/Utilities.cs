@@ -4,7 +4,7 @@ using System.Reflection;
 using UnhollowerRuntimeLib.XrefScans;
 using UnityEngine;
 
-namespace Serpent.Core
+namespace NEKOClient.Core
 {
     internal static class Utilities
     {
