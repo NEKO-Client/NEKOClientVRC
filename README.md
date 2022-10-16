@@ -1,6 +1,30 @@
 # NEKO CLIENT
 
-NEKo Client - A All-in-One VRChat mod to suit all your needs using [MelonLoader](https://github.com/LavaGang/MelonLoader)
+**UPDATE**: When VRChat Deployed EAC after Weeks Time working on this, i do feel bad all Progress making this Mod of fork of Remod but base code was made from Ares Mod.
+
+since ares mod broken a lot stuff and i forked they project and build my own NEKO Client with nothing break.
+
+Example i removed all Cheats and etc, and only has was Custom nametags on above peoples heads pulled from my Server API.
+
+
+and i had good Memories making this whtin hall community too, since everyone wanted have they own Custom Tag with they Twitch links and etc.
+
+but sadly to say after that went sideways and EAC was deployed after progress add more like Twitch icon when they go live and etc. they spoil this mod after progress on it make it friendly and safe to use.
+
+and it had good loading screen too and so much more i put time build.
+
+but sadly i say **Since no way bypass EAC not even fork of Remod, not sure i can easy get this VRChat mod back active anymore**
+
+But im might try rebuild it on ChilloutVR but issue is Chillout VR diffrent based code and lot i need look into too.
+
+and not just that i going build it for NeosVR too.
+
+Love all your Support and many more get us this far, even awesome team i had too.
+
+<3 ~ChisVR
+
+
+NEKO Client - A All-in-One VRChat mod to suit all your needs using [MelonLoader](https://github.com/LavaGang/MelonLoader)
 # **You need at least MelonLoader v0.5.4**
 
 ## Description
